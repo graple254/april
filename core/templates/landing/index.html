@@ -7,50 +7,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jadoo</title>
-    <link rel="icon" href="{% static 'assets/images/jadoo1.svg' %}">
+    <link rel="icon" href="{% static 'index/assets/images/jadoo1.svg' %}">
     <!-- Bootstrap 5.3.3 CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <!-- Bootstrap Icons 1.11.3 CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <!-- Local CSS -->
-    <link rel="stylesheet" href="{% static 'dist/css/iconfont/tabler-icons.css' %}">
-    <link rel="stylesheet" href="{% static 'dist/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'index/dist/css/iconfont/tabler-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'index/dist/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'bb/buildingblocks-assets/fonts/fonts.css' %}"/>
+    <link rel="stylesheet" href="{% static 'bb/css/bootstrap/bootstrap.min.css' %}"/>
 </head>
 <body>
     <!------------------------------>
     <!-- Header Start -->
     <!------------------------------>
     <header class="main-header position-fixed w-100">
-        <div class="container">
-            <nav class="navbar navbar-expand-xl py-0">
-                <div class="logo">
-                    <a class="navbar-brand py-0 me-0" href="#"><img src="{% static 'assets/images/jadoo1.svg' %}" alt=""></a>
+      <div class="container">
+        <nav class="navbar navbar-expand-xl py-0">
+          <div class="logo">
+                    <a class="navbar-brand py-0 me-0" href="{% url 'index' %}"><img src="{% static 'index/assets/images/jadoo1.svg' %}" alt=""></a>
                 </div>
-                <a class="d-inline-block d-lg-block d-xl-none d-xxl-none nav-toggler text-decoration-none" data-bs-toggle="offcanvas" href="#offcanvasExample" aria-controls="offcanvasExample">
-                    <i class="ti ti-menu-2"></i>
-                </a>
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Home</a>
+                            <a class="nav-link" aria-current="page" href="{% url 'index' %}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About us</a>
+                            <a class="nav-link" href="{% url 'about' %}">About us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Features </a>
+                            <a class="nav-link" href="{% url 'blog' %}">Blog </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Team </a>
+                            <a class="nav-link" href="{% url 'pricing' %}">Pricing </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Portfolio </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Review</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
+                            <a class="nav-link" href="{% url 'contact' %}">Contact Us </a>
                         </li>
                     </ul>
                     <div class="d-flex align-items-center">
@@ -60,42 +54,6 @@
             </nav>
         </div>
 
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-            <div class="offcanvas-header">
-                <div class="logo">
-                    <a class="navbar-brand py-0 me-0" href="#"><img src="{% static 'assets/images/jadoo1.svg' %}" alt=""></a>
-                </div>
-                <button type="button" class="btn-close text-reset ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"><i class="ti ti-x"></i></button>
-            </div>
-            <div class="offcanvas-body pt-0">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Features </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Team </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Portfolio </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Review</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
-                    </li>
-                </ul>
-                <div class="login d-block align-items-center">
-                    <a class="btn btn-primary text-capitalize w-100" href="#">contact us</a>
-                </div>
-            </div>
-        </div>
     </header>
     <!------------------------------>
     <!-- Header End  -->
@@ -110,10 +68,10 @@
         <div class="right-white-overlay position-relative"></div>
         <div class="container position-relative">
             <div class="left-icon">
-                <img src="{% static 'assets/images/hero/Macbook_color.svg' %}" class="img-fluid position-absolute">
+                <img src="{% static 'index/assets/images/hero/Macbook_color.svg' %}" class="img-fluid position-absolute">
             </div>
             <div class="right-icon">
-                <img src="{% static 'assets/images/hero/mobile-icon.svg' %}" class="img-fluid position-absolute">
+                <img src="{% static 'index/assets/images/hero/mobile-icon.svg' %}" class="img-fluid position-absolute">
             </div>
             <div class="row d-flex justify-content-center">
                 <div class="col-xxl-7 col-xl-8 col-lg-9 col-md-12 col-sm-12 col-12 text-center">
@@ -140,37 +98,7 @@
                     </p>
                       
                 </div>
-                <div class="col-12">
-                    <div class="options bg-white">
-                        <div class="row">
-                            <div class="col-xxl-4 col-xl-4 col-md-4 col-sm-12 col-12 mb-lg-0 mb-md-3 mb-sm-3 mb-3">
-                              <a href="#" class="option-col d-flex align-items-center text-decoration-none">
-                                <div class="icon text-dark d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
-                                  <i class="bi bi-lightning-charge-fill fs-3"></i>
-                                </div>
-                                <span class="ps-4 fw-bold fs-4">Why Jadoo</span>
-                              </a>
-                            </div>
-                            <div class="col-xxl-4 col-xl-4 col-md-4 col-sm-12 col-12 mb-lg-0 mb-md-3 mb-sm-3 mb-3">
-                              <a href="#" class="option-col d-flex align-items-center text-decoration-none">
-                                <div class="icon text-dark d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
-                                  <i class="bi bi-gear-fill fs-3"></i>
-                                </div>
-                                <span class="ps-4 fw-bold fs-4">How It Works</span>
-                              </a>
-                            </div>
-                            <div class="col-xxl-4 col-xl-4 col-md-4 col-sm-12 col-12 mb-lg-0 mb-md-3 mb-sm-3 mb-3">
-                              <a href="#" class="option-col d-flex align-items-center text-decoration-none">
-                                <div class="icon text-dark d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
-                                  <i class="bi bi-chat-left-dots-fill fs-3"></i>
-                                </div>
-                                <span class="ps-4 fw-bold fs-4">What People Say</span>
-                              </a>
-                            </div>
-                          </div>
-                          
-                    </div>
-                </div>
+                  
             </div>
         </div>
     </section>
@@ -181,84 +109,408 @@
     <!-------------------------------------->
     <!-- Feature of Design Section Start --->
     <!-------------------------------------->
-    <section class="feature-of-design position-relative" id="feature-of-design">
+    <section class="feature-of-design position-relative mt-0" id="feature-of-design">
         <div class="container">
-            <div class="row d-flex align-items-center">
-                <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-12 col-12">
-                    <h1 class="fw-bold text-uppercase">
-                        <span>The</span>
-                        <span class="highlight-hero-title position-relative">
-                            <span class="highlight-hero-title-inner">
-                                feature
-                            </span>
-                            <div class="team position-absolute">
-                                <img src="{% static 'assets/images/feature-of-design/arrow.svg' %}" class="img-fluid">
-                                <div class="btn btn-primary text-capitalize fw-normal d-block">Jadoo Team</div>
-                            </div>
-                        </span><br>
-                        of design<br> starts here
-                    </h1>
-                    <p class="mb-0 fs-5 lh-base fw-normal">
-                        It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in  with the release Letraset.
-                    </p>
-                    <a href="#" class="btn btn-primary btn-hover-secondery text-capitalize fw-normal mt-4">learn more</a>
-                </div>
-                <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
-                    <div class="position-relative img-bg-overlay">
-                        <img src="{% static 'assets/images/feature-of-design/image.png' %}" class="w-100">
-                    </div>
-                </div>
+          <div class="row d-flex align-items-center">
+            <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-12 col-12">
+              <h1 class="fw-bold text-uppercase">
+                <span>Why</span>
+                <span class="highlight-hero-title position-relative">
+                  <span class="highlight-hero-title-inner">
+                    Jadoo
+                  </span>
+                  <div class="team position-absolute">
+                    <img src="{% static 'index/assets/images/feature-of-design/arrow.svg' %}" class="img-fluid">
+                    <div class="btn btn-primary text-capitalize fw-normal d-block">Built for Brands</div>
+                  </div>
+                </span><br>
+                matters<br> now
+              </h1>
+              <p class="mb-0 fs-5 lh-base fw-normal">
+                Consumers skip ads, block ads, and ignore ads. Jadoo helps brands bypass the noise by partnering with everyday creators who shape culture and conversations. We don’t sell reach, we deliver real influence.
+              </p>
+              <a href="#how-it-works" class="btn btn-primary btn-hover-secondery text-capitalize fw-normal mt-4">See how it works</a>
             </div>
+            <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
+              <div class="position-relative img-bg-overlay">
+                <img src="{% static 'index/assets/images/feature-of-design/image1.png' %}" class="w-100">
+              </div>
+            </div>
+          </div>
         </div>
-    </section>
+      </section>
+      
     <!----------------------------------->
     <!-- Feature of Design Section End -->
     <!----------------------------------->
 
+    <!--How JAdoo works-->
+    <section class="py-12 py-md-16 py-lg-24" id="how-it-works">
+        <div class="container">
+          <div class="mw-5xl mx-auto">
+            <div class="text-center mb-24">
+            <h3 class="font-heading text-center mb-4">How <span style="color: #FF7100; font-weight: bold;">Jadoo</span> Works</h3>
+              <p class="text-light-dark mb-0">Connecting brands with creators for authentic, affordable, and impactful marketing.</p>
+            </div>
+            <div class="row">
+              <div class="col-12 col-sm-6 mb-12 mb-lg-24">
+                <div class="ps-4">
+                  <svg width="56" height="56" viewbox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="56" height="56" rx="16" fill="#FF7100"></rect>
+                    <path d="M22.9998 14.6667V41.3334H22.4132C17.5598 41.3334 14.6665 38.44 14.6665 33.5867V22.4134C14.6665 17.56 17.5598 14.6667 22.4132 14.6667H22.9998Z" fill="white"></path>
+                    <path d="M40.8333 22.4134V26.5H25.5V15.1667H33.5867C35.9139 15.1667 37.7113 15.8584 38.9264 17.0736C40.1416 18.2887 40.8333 20.0861 40.8333 22.4134Z" fill="white" stroke="white"></path>
+                    <path d="M41.3333 29V33.5867C41.3333 38.44 38.44 41.3333 33.5867 41.3333H25V29H41.3333Z" fill="white"></path>
+                  </svg>
+                  <div class="position-relative my-4">
+                    <div class="position-absolute top-0 start-0 py-3 ms-n4 border-2 border-start border-primary"></div>
+                    <h5 class="display-3 fw-bold">Create a Campaign</h5>
+                  </div>
+                  <div class="text-light-dark space-y-4">
+                    <p>
+                      Tell us your goal whether it’s <strong>product awareness</strong>, <strong>website traffic</strong>, or <strong>app installs</strong>. 
+                    </p>
+                    <p>
+                      Then choose how you want to work with creators:
+                    </p>
+                    <ul class="list-disc pl-5 space-y-2">
+                      <li><strong>Grab & Go:</strong> Creators claim and run your campaign instantly.</li>
+                      <li><strong>Spotlight:</strong> You pick from handpicked creator pitches.</li>
+                    </ul>
+                  </div>
+                  
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 mb-12 mb-lg-24">
+                <div class="ps-4">
+                  <svg width="56" height="56" viewbox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="56" height="56" rx="16" fill="#FF7100"></rect>
+                    <path d="M28.9036 38.6094C29.2699 38.6946 29.3034 39.1744 28.9466 39.2933L26.84 39.9867C21.5466 41.6933 18.76 40.2667 17.04 34.9733L15.3333 29.7067C13.6266 24.4134 15.04 21.6134 20.3333 19.9067L21.3706 19.5632C21.7735 19.4297 22.1612 19.8321 22.0388 20.2385C21.9267 20.6104 21.8216 21.0065 21.72 21.4267L20.4133 27.0134C18.9466 33.2934 21.0933 36.76 27.3733 38.2534L28.9036 38.6094Z" fill="white"></path>
+                    <path d="M32.5517 16.2466L32.553 16.2469L34.7795 16.7669C34.7796 16.7669 34.7796 16.7669 34.7797 16.7669C37.5248 17.409 39.1893 18.3814 40.0469 19.7636C40.9044 21.1458 41.0353 23.0673 40.3933 25.8059L39.0866 31.3792L39.0864 31.38C38.5365 33.7432 37.737 35.3111 36.6416 36.2484C35.5632 37.1713 34.1209 37.5472 32.1279 37.3556L32.1279 37.3556L32.1199 37.3549C31.4837 37.304 30.7899 37.1889 30.0374 37.0073L30.0359 37.0069L27.7959 36.4736L27.7956 36.4735C25.0633 35.8248 23.4011 34.8525 22.5432 33.4712C21.6856 32.0904 21.5516 30.1721 22.1935 27.4341L22.1936 27.4339L23.5001 21.8478C23.5002 21.8477 23.5002 21.8475 23.5002 21.8474C23.762 20.7349 24.0714 19.7879 24.4488 19.0207L24.4488 19.0207L24.4502 19.0176C25.1858 17.4962 26.1488 16.5834 27.4115 16.1476C28.6975 15.7038 30.3656 15.7295 32.5517 16.2466ZM32.8701 29.9013L32.8701 29.9013L32.8718 29.8946C33.0713 29.0968 32.5926 28.2758 31.7744 28.0748L27.8966 27.0887L27.8947 27.0883C27.0996 26.8895 26.2768 27.3647 26.075 28.1721C25.8763 28.9668 26.3511 29.7892 27.1578 29.9915C27.1582 29.9916 27.1585 29.9916 27.1588 29.9917L31.0369 30.9779L31.0628 30.9845L31.0894 30.9883C31.0985 30.9896 31.1085 30.9911 31.1192 30.9927C31.1943 31.0038 31.304 31.02 31.4134 31.02C32.087 31.02 32.6904 30.5803 32.8701 29.9013ZM36.7768 25.3946L36.7769 25.3946L36.7792 25.3851C36.9741 24.5858 36.5084 23.7546 35.676 23.5669L29.2163 21.9287L29.2147 21.9283C28.4196 21.7295 27.5968 22.2047 27.395 23.0121C27.1963 23.8068 27.6711 24.6292 28.4778 24.8315C28.4781 24.8316 28.4785 24.8316 28.4788 24.8317L34.9438 26.4713L34.9697 26.4779L34.996 26.4816C35.0052 26.4829 35.0152 26.4844 35.0258 26.486C35.1009 26.4971 35.2106 26.5133 35.3201 26.5133C35.9936 26.5133 36.597 26.0736 36.7768 25.3946Z" fill="white" stroke="white"></path>
+                  </svg>
+                  <div class="position-relative my-5">
+                    <div class="position-absolute top-0 start-0 py-3 ms-n4 border-2 border-start border-primary"></div>
+                    <h5 class="mb-0 display-3 fw-bold">Set a Budget</h5>
+                  </div>
+                  
+                  <p class="text-light-dark">
+                    Every campaign starts with a <strong>minimum base budget</strong> this ensures creators are fairly compensated and your campaign meets our quality standards.
+                  </p>
+                  
+                  <!-- Toggle Button -->
+                  <p>
+                    <a class="fw-semibold text-primary text-decoration-underline" data-bs-toggle="collapse" href="#budgetCollapse" role="button" aria-expanded="false" aria-controls="budgetCollapse">
+                      Show more
+                    </a>
+                  </p>
+                  
+                  <!-- Collapsible Content -->
+                  <div class="collapse text-light-dark" id="budgetCollapse">
+                    <p>Beyond the base, your total budget depends on several key choices:</p>
+                  
+                    <ul class="list-disc ps-4">
+                      <li><strong>Creator Tier</strong> – Choose between nano, micro, or macro creators. Higher tiers may require a larger investment.</li>
+                      <li><strong>Campaign Type</strong> – Awareness-based campaigns typically differ in pricing compared to performance-driven ones (e.g., app installs or link clicks).</li>
+                      <li><strong>Budget Distribution</strong> – You can choose to work with one creator or spread your budget across multiple creators for wider reach and diversity in content.</li>
+                    </ul>
+                  
+                    <p>
+                      No matter your budget as long as it meets our minimum threshold we’ll always match you with the right creators to make your campaign successful. You’re in control, and we’ll handle the heavy lifting.
+                    </p>
+                  
+                    <p class="mt-3">
+                      <a href="/pricing" class="fw-semibold text-decoration-underline text-primary">View minimum thresholds and pricing details</a>
+                    </p>
+                  </div>
+                  
+                  
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 mb-12 mb-sm-0">
+                <div class="ps-4">
+                  <svg width="56" height="56" viewbox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="56" height="56" rx="16" fill="#FF7100"></rect>
+                    <path d="M33.8333 16.7467V17.2025L34.2872 17.2446C35.994 17.4026 37.2071 17.9834 38.026 18.8529C38.8482 19.7257 39.3217 20.9409 39.4484 22.455L39.4483 22.4551L39.4495 22.4666C39.4522 22.4917 39.4445 22.5268 39.4106 22.5626C39.3761 22.5989 39.3283 22.62 39.28 22.62H16.72C16.6773 22.62 16.6319 22.6013 16.5972 22.5652C16.5645 22.5313 16.5498 22.4911 16.552 22.4502C16.6793 20.9383 17.1526 19.7248 17.9739 18.8529C18.7929 17.9834 20.006 17.4026 21.7127 17.2446L22.1666 17.2025V16.7467V14.6667C22.1666 14.3962 22.3961 14.1667 22.6666 14.1667C22.9372 14.1667 23.1666 14.3962 23.1666 14.6667V16.6667V17.1667H23.6666H32.3333H32.8333V16.6667V14.6667C32.8333 14.3962 33.0628 14.1667 33.3333 14.1667C33.6038 14.1667 33.8333 14.3962 33.8333 14.6667V16.7467Z" fill="white" stroke="white"></path>
+                    <path d="M38.6667 25.12H17.3333C16.6 25.12 16 25.72 16 26.4533V34.6667C16 38.6667 18 41.3333 22.6667 41.3333H33.3333C38 41.3333 40 38.6667 40 34.6667V26.4533C40 25.72 39.4 25.12 38.6667 25.12ZM24.28 36.28C24.1467 36.4 24 36.4933 23.84 36.56C23.68 36.6267 23.5067 36.6667 23.3333 36.6667C23.16 36.6667 22.9867 36.6267 22.8267 36.56C22.6667 36.4933 22.52 36.4 22.3867 36.28C22.1467 36.0267 22 35.3333 22 35.3333C22 34.9867 22.1467 34.64 22.3867 34.3867C22.52 34.2667 22.6667 34.1733 22.8267 34.1067C23.1467 33.9733 23.52 33.9733 23.84 34.1067C24 34.1733 24.1467 34.2667 24.28 34.3867C24.52 34.64 24.6667 34.9867 24.6667 35.3333C24.6667 35.68 24.52 36.0267 24.28 36.28ZM24.56 31.1733C24.4933 31.3333 24.4 31.48 24.28 31.6133C24.1467 31.7333 24 31.8267 23.84 31.8933C23.68 31.96 23.5067 32 23.3333 32C23.16 32 22.9867 31.96 22.8267 31.8933C22.6667 31.8267 22.52 31.7333 22.3867 31.6133C22.2667 31.48 22.1733 31.3333 22.1067 31.1733C22.04 31.0133 22 30.84 22 30.6667C22 30.4933 22.04 30.32 22.1067 30.16C22.1733 30 22.2667 29.8533 22.3867 29.72C22.52 29.6 22.6667 29.5067 22.8267 29.44C23.1467 29.3067 23.52 29.3067 23.84 29.44C24 29.5067 24.1467 29.6 24.28 29.72C24.4 29.8533 24.4933 30 24.56 30.16C24.6267 30.32 24.6667 30.4933 24.6667 30.6667C24.6667 30.84 24.6267 31.0133 24.56 31.1733ZM28.9467 31.6133C28.8133 31.7333 28.6667 31.8267 28.5067 31.8933C28.3467 31.96 28.1733 32 28 32C27.8267 32 27.6533 31.96 27.4933 31.8933C27.3333 31.8267 27.1867 31.7333 27.0533 31.6133C26.8133 31.36 26.6667 31.0133 26.6667 30.6667C26.6667 30.32 26.8133 29.9733 27.0533 29.72C27.1867 29.6 27.3333 29.5067 27.4933 29.44C27.8133 29.2933 28.1867 29.2933 28.5067 29.44C28.6667 29.5067 28.8133 29.6 28.9467 29.72C29.1867 29.9733 29.3333 30.32 29.3333 30.6667C29.3333 31.0133 29.1867 31.36 28.9467 31.6133Z" fill="white"></path>
+                  </svg>
+                  <div class="position-relative my-4">
+                    <div class="position-absolute top-0 start-0 py-3 ms-n4 border-2 border-start border-primary"></div>
+                    <h5 class="mb-0 display-3 fw-bold">Reach the Right Creators</h5>
+                  </div>
+                  <p class="text-light-dark">Jadoo connects you with everyday creators who influence real people in real life no bots, no gimmicks, just authentic impact.</p>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6">
+                <div class="ps-4">
+                  <svg width="56" height="56" viewbox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="56" height="56" rx="16" fill="#FF7100"></rect>
+                    <path d="M41.3332 41.3333H14.6665C14.1198 41.3333 13.6665 40.88 13.6665 40.3333C13.6665 39.7866 14.1198 39.3333 14.6665 39.3333H41.3332C41.8798 39.3333 42.3332 39.7866 42.3332 40.3333C42.3332 40.88 41.8798 41.3333 41.3332 41.3333Z" fill="white"></path>
+                    <path d="M30.5 40.8334H25.5V17.3334C25.5 16.6557 25.6406 16.1167 25.92 15.7565C26.1817 15.4193 26.6213 15.1667 27.4 15.1667H28.6C29.3787 15.1667 29.8183 15.4193 30.08 15.7565C30.3594 16.1167 30.5 16.6557 30.5 17.3334V40.8334Z" fill="white" stroke="white"></path>
+                    <path d="M16 25.3334V41.3334H21.3333V25.3334C21.3333 23.8667 20.8 22.6667 19.2 22.6667H18.1333C16.5333 22.6667 16 23.8667 16 25.3334Z" fill="white"></path>
+                    <path d="M34.6665 32V41.3333H39.9998V32C39.9998 30.5333 39.4665 29.3333 37.8665 29.3333H36.7998C35.1998 29.3333 34.6665 30.5333 34.6665 32Z" fill="white"></path>
+                  </svg>
+                  <div class="position-relative my-4">
+                    <div class="position-absolute top-0 start-0 py-3 ms-n4 border-2 border-start border-primary"></div>
+                    <h5 class="display-3 fw-bold">Track Real Impact</h5>
+                  </div>
+                  <p class="text-light-dark">Get real-time insights: views, clicks, signups, downloads. Know exactly what you got for every dollar spent.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--End of How Jadoo works-->
+
+      <!--Testimonial OR Brands we work with-->
+
+
+
+      <section class="py-5 bg-light">
+        <div class="container text-center mb-5">
+          <h3 class="fw-bold mb-3">Brands We Work With</h3>
+          <p class="text-muted mb-0">Trusted by innovative companies and platforms</p>
+        </div>
+      
+        <div class="container-fluid">
+          <div id="brandsCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <!-- Amazon -->
+              <div class="carousel-item active">
+                <div class="d-flex justify-content-center">
+                  <div class="card flex-shrink-0 text-center p-4" style="min-width: 220px; max-width: 260px;">
+                    <div class="mb-3 display-5 text-primary">
+                      <i class="bi bi-amazon"></i>
+                    </div>
+                    <h6 class="fw-semibold">Amazon Activate</h6>
+                    <p class="small text-muted">Empowering startups with cloud credits and tools.</p>
+                  </div>
+                </div>
+              </div>
+      
+              <!-- Facebook -->
+              <div class="carousel-item">
+                <div class="d-flex justify-content-center">
+                  <div class="card flex-shrink-0 text-center p-4" style="min-width: 220px; max-width: 260px;">
+                    <div class="mb-3 display-5 text-primary">
+                      <i class="bi bi-facebook"></i>
+                    </div>
+                    <h6 class="fw-semibold">Facebook</h6>
+                    <p class="small text-muted">Connecting creators with their audiences globally.</p>
+                  </div>
+                </div>
+              </div>
+      
+              <!-- Google -->
+              <div class="carousel-item">
+                <div class="d-flex justify-content-center">
+                  <div class="card flex-shrink-0 text-center p-4" style="min-width: 220px; max-width: 260px;">
+                    <div class="mb-3 display-5 text-primary">
+                      <i class="bi bi-google"></i>
+                    </div>
+                    <h6 class="fw-semibold">Google</h6>
+                    <p class="small text-muted">Scaling reach through YouTube and Google Ads.</p>
+                  </div>
+                </div>
+              </div>
+      
+              <!-- TikTok -->
+              <div class="carousel-item">
+                <div class="d-flex justify-content-center">
+                  <div class="card flex-shrink-0 text-center p-4" style="min-width: 220px; max-width: 260px;">
+                    <div class="mb-3 display-5 text-primary">
+                      <i class="bi bi-tiktok"></i>
+                    </div>
+                    <h6 class="fw-semibold">TikTok</h6>
+                    <p class="small text-muted">Tapping into viral trends and short-form video magic.</p>
+                  </div>
+                </div>
+              </div>
+      
+              <!-- X / Twitter -->
+              <div class="carousel-item">
+                <div class="d-flex justify-content-center">
+                  <div class="card flex-shrink-0 text-center p-4" style="min-width: 220px; max-width: 260px;">
+                    <div class="mb-3 display-5 text-primary">
+                      <i class="bi bi-twitter-x"></i>
+                    </div>
+                    <h6 class="fw-semibold">X (Twitter)</h6>
+                    <p class="small text-muted">Driving real-time conversations and creator shoutouts.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Carousel Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#brandsCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon bg-dark rounded-4 fs-5" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#brandsCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon bg-dark rounded-4 fs-5" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+      
+          <div class="text-center mt-4">
+            <span class="text-muted">Want to partner with us? 
+              <a href="#contact" class="fw-semibold text-primary text-decoration-underline">Get in touch</a>
+            </span>
+          </div>
+        </div>
+      </section>
+
+
+      <!--End Of Brands we work with-->
+
+
+      <!--Contact us or Join Our Waitlist-->
+
+      
+      <section class="py-12 py-md-16 py-lg-24 position-relative">
+        <div class="container position-relative">
+          <div class="mw-5xl mx-auto py-20 px-8 bg-primary rounded-3">
+            <div class="mw-lg mw-xl-2xl mx-auto text-center">
+              <div class="mb-6">
+                <svg width="68" height="34" viewbox="0 0 68 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 34C1.99977 29.7976 2.8273 25.6364 4.43533 21.7539C6.04336 17.8713 8.40039 14.3436 11.3718 11.3721C14.3433 8.40056 17.8709 6.04346 21.7533 4.43539C25.6358 2.82732 29.7969 1.99977 33.9991 2C51.6726 2 66 16.3261 66 34" stroke="#FFC96D" stroke-width="4" stroke-miterlimit="10"></path>
+                  <path d="M9.22583 34C9.22583 27.4084 11.836 21.0868 16.482 16.4258C21.1281 11.7649 27.4295 9.14639 34 9.14639C40.5705 9.14639 46.872 11.7649 51.518 16.4258C56.1641 21.0868 58.7742 27.4084 58.7742 34" stroke="#FFF2D6" stroke-width="4" stroke-miterlimit="10"></path>
+                  <path d="M16.134 34C16.134 29.2617 18.0163 24.7174 21.3669 21.3669C24.7174 18.0163 29.2617 16.134 34 16.134C38.7384 16.134 43.2827 18.0163 46.6332 21.3669C49.9837 24.7174 51.866 29.2617 51.866 34" stroke="#530031" stroke-width="4" stroke-miterlimit="10"></path>
+                </svg>
+              </div>
+              <h3 class="font-heading mb-6 text-white">Want to learn how to build templates like this one?</h3>
+              <p class="text-primary-light mb-10">Visit www.pixelrocket.store and learn how to become a frontend web developer</p>
+              <div class="d-inline-block bg-white rounded-pill"><a class="btn btn-outline-light text-dark w-100" href="https://www.pixelrocket.store">Start learning today!</a></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--End-->
 
     <!------------------------------>
     <!-- Footer Section Start  -->
     <!------------------------------>
-    <footer class="footer">
+    
+    <section class="py-12 pt-lg-24">
         <div class="container">
-            <div class="row">
-                <div class="col-xxl-4 col-xxl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                    <div class="footer-logo-col">
-                        <a href="#"><img src="{% static 'assets/images/jadoo1.svg' %}"></a>
-                        <p class="copyrights fs-5 mb-0">Copyright @ <span id="autodate"></span></p>
-                        <ul class="social-icons list-unstyled mb-0 pl-0 d-flex align-items-center">
-                            <li><a href="#" class="rounded-circle"><img src="{% static 'assets/images/footer/icon_facebook.svg' %}"><img src="{% static 'assets/images/footer/icon_facebook_white.svg' %}"></a></li>
-                            <li><a href="#" class="rounded-circle"><img src="{% static 'assets/images/footer/icon_twitter.svg' %}"><img src="{% static 'assets/images/footer/icon_twitter_white.svg' %}"></a></li>
-                            <li><a href="#" class="rounded-circle"><img src="{% static 'assets/images/footer/icon_google_plus.svg' %}"><img src="{% static 'assets/images/footer/icon_google_plus_white.svg' %}"></a></li>
-                            <li><a href="#" class="rounded-circle"><img src="{% static 'assets/images/footer/icon_linkdin.svg' %}"><img src="{% static 'assets/images/footer/icon_linkdin_white.svg' %}"></a></li>
-                        </ul>
-                    </div>
+          <div class="row mb-16 mb-md-20 mb-lg-32">
+            <div class="col-lg-3 mb-16 mb-lg-0"><a class="d-inline-block" href="#"><img src="{% static 'index/assets/images/jadoo1.svg' %}" alt=""/></a></div>
+            <div class="col-lg-9">
+              <div class="row">
+                <div class="col-6 col-md-3 mb-12">
+                  <h6 class="mb-6 fw-medium">Platform</h6>
+                  <ul class="list-unstyled mb-0">
+                    <li class="mb-6"><a class="btn btn-link text-light-dark p-0" href="about.html">About</a></li>
+                    <li class="mb-6"><a class="btn btn-link text-light-dark p-0" href="pricing.html">Pricing</a></li>
+                    <li class="mb-6"><a class="btn btn-link text-light-dark p-0" href="blog.html">Blog</a></li>
+                    <li class="mb-6"><a class="btn btn-link text-light-dark p-0" href="contact.html">Contact</a></li>
+                    <li><a class="btn btn-link text-light-dark p-0" href="https://www.pixelrocket.store">Pixel Rocket</a></li>
+                  </ul>
                 </div>
-                <div class="col-xxl-3 col-xxl-3 col-lg-3 col-md-4 col-sm-12 col-12">
-                    <h5 class="text-secondary fw-bold fs-4">Quick links</h5>
-                    <ul class="list-unstyled mb-0 pl-0">
-                        <li><a href="#" class="text-capitalize fs-6 text-decoration-none">Home</a></li>
-                        <li><a href="#" class="text-capitalize fs-6 text-decoration-none">about us</a></li>
-                        <li><a href="#" class="text-capitalize fs-6 text-decoration-none">Features </a></li>
-                        <li><a href="#" class="text-capitalize fs-6 text-decoration-none">Team </a></li>
-                        <li><a href="#" class="text-capitalize fs-6 text-decoration-none">Portfolio </a></li>
-                        <li><a href="#" class="text-capitalize fs-6 text-decoration-none">Pricing</a></li>
-                    </ul>
+                <div class="col-6 col-md-3 mb-12">
+                  <h6 class="mb-6 fw-medium">Company</h6>
+                  <ul class="list-unstyled mb-0">
+                    <li class="mb-6"><a class="btn btn-link text-light-dark p-0" href="#">About</a></li>
+                    <li class="mb-6"><a class="btn btn-link text-light-dark p-0" href="#">Our Mission</a></li>
+                    <li class="mb-6"><a class="btn btn-link text-light-dark p-0" href="#">Careers</a>                      <span class="badge ms-1 bg-primary text-white lh-base">HIRING</span></li>
+                    <li><a class="btn btn-link text-light-dark p-0" href="#">Contact</a></li>
+                  </ul>
                 </div>
+                <div class="col-6 col-md-3">
+                  <h6 class="mb-6 fw-medium">Resources</h6>
+                  <ul class="list-unstyled mb-0">
+                    <li class="mb-6"><a class="btn btn-link text-light-dark p-0" href="#">Tutorials</a></li>
+                    <li class="mb-6"><a class="btn btn-link text-light-dark p-0" href="#">Blog</a></li>
+                    <li class="mb-6"><a class="btn btn-link text-light-dark p-0" href="#">Help Center</a></li>
+                    <li class="mb-6"><a class="btn btn-link text-light-dark p-0" href="#">Features</a></li>
+                    <li><a class="btn btn-link text-light-dark p-0" href="#">Support</a></li>
+                  </ul>
+                </div>
+                <div class="col-6 col-md-3">
+                  <h6 class="mb-6 fw-medium">Community</h6>
+                  <ul class="list-unstyled mb-0">
+                    <li class="mb-6"><a class="btn btn-link text-light-dark p-0" href="#">Discord Server</a></li>
+                    <li class="mb-6"><a class="btn btn-link text-light-dark p-0" href="#">Slack Group</a></li>
+                    <li><a class="btn btn-link text-light-dark p-0" href="#">Zoom Room</a></li>
+                  </ul>
+                </div>
+              </div>
             </div>
+          </div>
+          <div class="text-center">
+            <p class="text-light-dark small mb-0">Template by <a href="https://www.pixelrocket.store">Pixel Rocket</a>. All rights reserved.</p>
+          </div>
         </div>
-    </footer>
+      </section>
     <!------------------------------>
     <!-- Footer Section End  -->
     <!------------------------------>
+
+    <!-- Floating menu button for small screens -->
+    <button class="btn btn-primary d-block d-xl-none position-fixed bottom-0 end-0 m-3 rounded-circle p-3" data-bs-toggle="modal" data-bs-target="#menuModal" aria-label="Open Menu" data-bs-toggle-toast="menuToast">
+      <i class="bi bi-list fs-4"></i>
+    </button>
+
+    <!-- Toast notification for menu hint -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div id="menuToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="3000">
+          <div class="toast-body">
+              This is the menu
+          </div>
+      </div>
+    </div>
+        
+    <div class="modal fade" id="menuModal" tabindex="-1" aria-labelledby="menuModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-md">
+          <div class="modal-content">
+              <div class="modal-header border-0">
+                  <div class="logo">
+                      <a class="navbar-brand py-0 me-0" href="{% url 'index' %}"><img src="{% static 'index/assets/images/jadoo1.svg' %}" alt="Jadoo Logo"></a>
+                  </div>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="ti ti-x"></i></button>
+              </div>
+              <div class="modal-body pt-0">
+                  <ul class="nav flex-column">
+                      <li class="nav-item">
+                          <a class="nav-link" aria-current="page" href="{% url 'index' %}">Home</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="{% url 'about' %}">About us</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="#">Features</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="#">Team</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="#">Portfolio</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="#">Review</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="{% url 'pricing' %}">Pricing</a>
+                      </li>
+                  </ul>
+              </div>
+              <div class="modal-footer border-0">
+                  <a class="btn btn-primary text-capitalize w-100" href="{% url 'contact' %}">Contact Us</a>
+              </div>
+          </div>
+      </div>
+  </div>
 
     <!------------------------------>
     <!----------- Js Libs ---------->
     <!------------------------------>
     <!-- Bootstrap JS Bundle (includes Popper) -->
-    <script src="{% static 'dist/js/jquery.min.js' %}"></script>
-    <script src="{% static 'dist/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'dist/js/custom.js' %}"></script>
+    <script src="{% static 'index/dist/js/jquery.min.js' %}"></script>
+    <script src="{% static 'index/dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'index/dist/js/custom.js' %}"></script>
+    <script src="{% static 'bb/js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'bb/js/main.js' %}"></script>
 
 </body>
 </html>
