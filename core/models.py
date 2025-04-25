@@ -129,39 +129,59 @@ class Terms_and_conditions(models.Model):
 
 # Start of About.html dynamic models here ----------------------------------------------------------------------
 
+class About(models.Model):
+    title = models.TextField(blank=True, null=True)  # About Jadoo
+    aboutus_text = models.TextField(blank=True, null=True)  # Welcome to Jadoo
+
+    founder_text = models.TextField(blank=True, null=True)  # Founded by a team of passionate
+    founder_image = models.ImageField(upload_to='about/founder/', blank=True, null=True)  # Image field for founder image
+    founder_name = models.TextField(blank=True, null=True)  # Founder name
+    founder_position = models.TextField(blank=True, null=True)  # Founder position (e.g., CEO, Co-Founder)
+
+    values_title = models.TextField(blank=True, null=True)  # Our Values
+    values_text = models.TextField(blank=True, null=True)  # Our values are the foundation of our company culture
+
+    mission_title_1 = models.TextField(blank=True, null=True)  # Our Mission
+    mission_1_text = models.TextField(blank=True, null=True)  # Our mission is to empower brands
+
+    mission_title_2 = models.TextField(blank=True, null=True)  # Our Mission
+    mission_2_text = models.TextField(blank=True, null=True)  # Our mission is to empower brands
+
+    def __str__(self):
+        return "About Section"
 
 
 # End of About.html dynamic models here ----------------------------------------------------------------------
 #
 #
 
+# Start of Contact Section dynamic models here ----------------------------------------------------------------------
 
-# Start of Contact.html dynamic models here ----------------------------------------------------------------------
+class Contact(models.Model):
+    visitor_choices = (
+        ('Influencer', 'Influencer'),
+        ('brand', 'Brand'),
+    )
+
+    visitor_type = models.CharField(max_length=50, choices=visitor_choices, blank=True, null=True)  # Influencer or Brand
+    contact_email = models.TextField(blank=True, null=True)  # We will send you a proposal to your email
+
+    def __str__(self):
+        return "Contact Section"
+    
+
+class Launching_soon(models.Model):
+    title_1 = models.TextField(blank=True, null=True)  # Launching
+    text_title_2 = models.TextField(blank=True, null=True)  # Soon
+    launch_date = models.TextField(blank=True, null=True)  # Launch date (e.g., 1st Jan 2024
+
+    def __str__(self):
+        return "Launching Soon Section"    
+    
+
+class contact_phone(models.Model):
+    phone_number = models.TextField(blank=True, null=True)  # Contact phone number
 
 
-
-# End of Contact.html dynamic models here ----------------------------------------------------------------------
-#
-#
-
-
-# Start of pricing.html dynamic models here ----------------------------------------------------------------------
-
-
-
-
-#End of pricing.html dynamic models here ----------------------------------------------------------------------
-#
-#
-#
-
-
-
-# start of blog.html dynamic models here ----------------------------------------------------------------------
-
-
-
-# End of blog.html dynamic models here ----------------------------------------------------------------------
-#
-#
-#
+    def __str__(self):
+        return "Contact Phone Section"    

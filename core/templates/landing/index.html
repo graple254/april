@@ -26,34 +26,16 @@
       <div class="container">
         <nav class="navbar navbar-expand-xl py-0">
           <div class="logo">
-                    <a class="navbar-brand py-0 me-0" href="{% url 'index' %}"><img src="{% static 'index/assets/images/jadoo1.svg' %}" alt=""></a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mx-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{% url 'index' %}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'about' %}">About us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'blog' %}">Blog </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'pricing' %}">Pricing & Fees </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'contact' %}">Contact Us </a>
-                        </li>
-                    </ul>
-                    <div class="d-flex align-items-center">
-                        <a class="btn btn-primary btn-hover-secondery text-capitalize " href="{% url 'contact' %}">contact us</a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-
+            <a class="navbar-brand py-0 me-0" href="{% url 'index' %}"><img src="{% static 'index/assets/images/jadoo1.svg' %}" alt=""></a>
+          </div>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto"></ul>
+            <div class="d-flex align-items-center ms-auto">
+              <a class="btn btn-primary btn-hover-secondery text-capitalize" href="#">Contact Us</a>
+            </div>
+          </div>
+        </nav>
+      </div>
     </header>
     <!------------------------------>
     <!-- Header End  -->
@@ -218,7 +200,7 @@
                     </p>
                   
                     <p class="mt-3">
-                      <a href="{% url 'pricing' %}" class="fw-semibold text-decoration-underline text-primary">View minimum thresholds and pricing details</a>
+                      <a href="#" class="fw-semibold text-decoration-underline text-primary">View minimum thresholds and pricing details</a>
                     </p>
                   </div>
                   
@@ -349,7 +331,7 @@
       
           <div class="text-center mt-4">
             <span class="text-muted">Want to partner with us? 
-              <a href="{% url 'contact' %}" class="fw-semibold text-primary text-decoration-underline">Get in touch</a>
+              <a href="#" class="fw-semibold text-primary text-decoration-underline">Get in touch</a>
             </span>
           </div>
         </div>
@@ -375,7 +357,7 @@
               </div>
               <h3 class="font-heading mb-6 text-white">Are you a content creator willing to join Our platform?</h3>
               <p class="text-primary-light mb-10">Come on lets work together, learn more about us👇</p>
-              <div class="d-inline-block bg-white rounded-pill"><a class="btn btn-outline-light text-dark w-100" href="{% url 'about' %}">check Us out</a></div>
+              <div class="d-inline-block bg-white rounded-pill"><a class="btn btn-outline-light text-dark w-100" href="#">check Us out</a></div>
             </div>
           </div>
         </div>
@@ -386,47 +368,34 @@
     <!------------------------------>
     <!-- Footer Section Start  -->
     <!------------------------------>
-    
-    <section class="py-12 pt-lg-24">
+    <section class="py-8 pt-lg-16">
       <div class="container">
-        <div class="row mb-16 mb-md-20 mb-lg-32">
-          <div class="col-lg-3 mb-16 mb-lg-0"><a class="d-inline-block" href="{% url 'index' %}"><img src="{% static 'index/assets/images/jadoo1.svg' %}" alt=""/></a></div>
+        <div class="row mb-12 mb-md-16 mb-lg-24">
+          <div class="col-lg-3 mb-12 mb-lg-0"><a class="d-inline-block" href="{% url 'index' %}"><img src="{% static 'index/assets/images/jadoo1.svg' %}" alt=""/></a></div>
           <div class="col-lg-9">
             <div class="row">
-              <div class="col-6 col-md-3 mb-12">
-                <h6 class="mb-6 fw-medium">Platform</h6>
+              <div class="col-6 col-md-3 mb-8">
+                <h6 class="mb-4 fw-medium">Platform</h6>
                 <ul class="list-unstyled mb-0">
-                  <li class="mb-6"><a class="btn btn-link text-light-dark p-0" href="{% url 'about' %}">About</a></li>
-                  <li class="mb-6"><a class="btn btn-link text-light-dark p-0" href="{% url 'pricing' %}">Pricing</a></li>
-                  <li class="mb-6"><a class="btn btn-link text-light-dark p-0" href="{% url 'blog' %}">Blog</a></li>
-                  <li class="mb-6"><a class="btn btn-link text-light-dark p-0" href="{% url 'contact' %}">Contact</a></li>
+                  <li class="mb-4"><a class="btn btn-link text-light-dark p-0" href="#">Contact</a></li>
                 </ul>
               </div>
-              <div class="col-6 col-md-3 mb-12">
-                <h6 class="mb-6 fw-medium">Company</h6>
+              <div class="col-6 col-md-3 mb-8">
+                <h6 class="mb-4 fw-medium">Company</h6>
                 <ul class="list-unstyled mb-0">
-                  <li class="mb-6"><a class="btn btn-link text-light-dark p-0" href="{% url 'about' %}">About</a></li>
-                  <li class="mb-6"><a class="btn btn-link text-light-dark p-0" href="{% url 'about' %}">Our Mission</a></li>
-                  <li class="mb-6"><a class="btn btn-link text-light-dark p-0" href="{% url 'about' %}">Careers</a>                  <!--   <span class="badge ms-1 bg-primary text-white lh-base">HIRING</span></li>  --> 
-                  <li><a class="btn btn-link text-light-dark p-0" href="{% url 'contact' %}">Contact</a></li>
+                  <li><a class="btn btn-link text-light-dark p-0" href="#">Contact</a></li>
                 </ul>
               </div>
               <div class="col-6 col-md-3">
-                <h6 class="mb-6 fw-medium">Resources</h6>
+                <h6 class="mb-4 fw-medium">Resources</h6>
                 <ul class="list-unstyled mb-0">
-                  <li class="mb-6"><a class="btn btn-link text-light-dark p-0" href="{% url 'blog' %}">Tutorials</a></li>
-                  <li class="mb-6"><a class="btn btn-link text-light-dark p-0" href="{% url 'blog' %}">Blog</a></li>
-                  <li class="mb-6"><a class="btn btn-link text-light-dark p-0" href="{% url 'contact' %}">Help Center</a></li>
-                  <li class="mb-6"><a class="btn btn-link text-light-dark p-0" href="{% url 'pricing' %}">Pricing & Fees</a></li>
-                  <li><a class="btn btn-link text-light-dark p-0" href="{% url 'contact' %}">Support</a></li>
+                  <li><a class="btn btn-link text-light-dark p-0" href="#">Support</a></li>
                 </ul>
               </div>
               <div class="col-6 col-md-3">
-                <h6 class="mb-6 fw-medium">Community</h6>
+                <h6 class="mb-4 fw-medium">Community</h6>
                 <ul class="list-unstyled mb-0">
-                  <li class="mb-6"><a class="btn btn-link text-light-dark p-0" href="#">Discord Server</a></li>
-                  <li class="mb-6"><a class="btn btn-link text-light-dark p-0" href="#">Slack Group</a></li>
-                  <li><a class="btn btn-link text-light-dark p-0" href="#">Zoom Room</a></li>
+                  <li class="mb-4"><a class="btn btn-link text-light-dark p-0" href="#">Discord Server</a></li>
                 </ul>
               </div>
             </div>
@@ -466,23 +435,77 @@
                       <li class="nav-item">
                           <a class="nav-link" aria-current="page" href="{% url 'index' %}">Home</a>
                       </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="{% url 'about' %}">About us</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="{% url 'pricing' %}">Pricing</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="{% url 'blog' %}">Blog & Tutorials</a>
-                      </li>
                   </ul>
               </div>
               <div class="modal-footer border-0">
-                  <a class="btn btn-primary text-capitalize w-100" href="{% url 'contact' %}">Contact Us</a>
+                  <a class="btn btn-primary text-capitalize w-100" href="#">Contact Us</a>
               </div>
           </div>
       </div>
   </div>
+
+      <!-- Launch Modal -->
+      <div class="modal fade" id="launchModal" tabindex="-1" aria-labelledby="launchModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+          <div class="modal-content rounded-4 shadow-lg">
+            <div class="modal-header border-0 bg-primary text-white p-4">
+              <h5 class="modal-title fw-bold fs-3" id="launchModalLabel">
+                <i class="bi bi-rocket-takeoff me-2"></i>Jadoo is Launching Soon!
+              </h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+              <div class="text-center mb-4">
+                <h4 class="fw-bold text-dark">Get Ready for the Future of Influence</h4>
+                <p class="text-muted fs-5">
+                  We're launching on <strong>June 15, 2025</strong>! Join our waitlist to be the first to connect brands with creators who spark real conversations.
+                </p>
+              </div>
+              <div class="card shadow-sm p-4 mb-4">
+                <h5 class="fw-semibold text-center mb-3">Why Join Jadoo?</h5>
+                <ul class="list-unstyled">
+                  <li class="d-flex align-items-center mb-2">
+                    <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                    <span>Authentic creator partnerships</span>
+                  </li>
+                  <li class="d-flex align-items-center mb-2">
+                    <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                    <span>Affordable marketing solutions</span>
+                  </li>
+                  <li class="d-flex align-items-center">
+                    <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                    <span>Real-time campaign insights</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="text-center">
+                <h5 class="fw-semibold mb-3">Join Our Waitlist</h5>
+                <form id="waitlistForm" method="POST">
+                  {% csrf_token %}
+                  <div class="mb-3">
+                    <label for="userType" class="form-label fw-medium">I am a:</label>
+                    <select class="form-select rounded-pill py-2" id="userType" name="userType" required>
+                      <option value="" disabled selected>Select an option</option>
+                      <option value="creator">Creator</option>
+                      <option value="business">Business</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="email" class="form-label fw-medium">Email Address</label>
+                    <input type="email" class="form-control rounded-pill py-2" id="email" name="email" placeholder="Enter your email" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary rounded-pill px-4 py-2">
+                    <i class="bi bi-envelope-fill me-2"></i>Join Now
+                  </button>
+                </form>
+              </div>
+            </div>
+            <div class="modal-footer border-0 p-4">
+              <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Maybe Later</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
     <!------------------------------>
     <!----------- Js Libs ---------->
@@ -493,6 +516,20 @@
     <script src="{% static 'index/dist/js/custom.js' %}"></script>
     <script src="{% static 'bb/js/bootstrap/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'bb/js/main.js' %}"></script>
+
+        <!-- Modal Auto-Show Script -->
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            // Random delay between 30 and 60 seconds
+            const delay = Math.floor(Math.random() * (60000 - 30000 + 1)) + 30000;
+            setTimeout(function () {
+              const launchModal = new bootstrap.Modal(document.getElementById('launchModal'), {
+                keyboard: true
+              });
+              launchModal.show();
+            }, delay);
+          });
+        </script>
 
 </body>
 </html>
