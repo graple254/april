@@ -13,7 +13,13 @@ SECRET_KEY = 'django-insecure-(2&760$$=6z45kp9$^l=k7$78(c!#ov^%6!g8xf3)fto+e@&yp
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*', 'www.jadoo.world', 'jadoo.world']
+
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://www.jadoo.world",
+    "https://jadoo.world",
+]
 
 
 # Application definition
@@ -25,7 +31,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "whitenoise.runserver_nostatic",
     'core',  # Custom app for core functionality
+    'storages',  # For S3 storage
 ]
 
 MIDDLEWARE = [
@@ -33,6 +41,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'core.middleware.VisitorTrackingMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', #make sure to add this line
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -64,8 +73,12 @@ WSGI_APPLICATION = 'jadoo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'jadoo',
+        'USER': 'jadoo_admin',
+        'PASSWORD': 'python4112',
+        'HOST': 'jadoo.copmi6cmsk6q.us-east-1.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
@@ -114,3 +127,50 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGIN_URL = "login_user"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+
+# AWS configuration
+
+
+AWS_ACCESS_KEY_ID = 'AKIA45Y2RXIZJTBEBVLO' 
+AWS_SECRET_ACCESS_KEY = '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' 
+
+
+
+# Basic Storage configuration for Amazon S3 (Irrespective of Django versions)
+
+
+AWS_STORAGE_BUCKET_NAME = 'jadoo-storage' # - Enter your S3 bucket name HERE
+
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+AWS_S3_FILE_OVERWRITE = False
+
+
+
+
+# Django < 4.2
+
+'''
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+'''
+
+# Django 4.2 >
+
+
+STORAGES = {
+
+    # Media file (image) management   
+    "default": {
+        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+    },
+    
+    # CSS and JS file management
+    "staticfiles": {
+        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+    },
+}
+

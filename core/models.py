@@ -2,6 +2,12 @@ from django.db import models
 from django.utils import timezone
 
 
+class Profile(models.Model):
+    image = models.ImageField(upload_to='profile_images', blank=True, null=True)
+
+    def __str__(self):
+        return f"Profile Image: {self.image.url if self.image else 'No image uploaded'}"
+
 class Visitor(models.Model):
     ip_address = models.GenericIPAddressField(blank=True, null=True)
     location = models.CharField(max_length=255, blank=True, null=True)

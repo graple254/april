@@ -3,6 +3,14 @@ from .models import *
 from django.utils.html import format_html
 
 # Base ModelAdmin for common configurations
+
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('image',)
+
+
+
+
 class BaseSectionAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'id')
     search_fields = [f for f in dir(HeroSection) if f.startswith('text_') or f.startswith('title_')]
