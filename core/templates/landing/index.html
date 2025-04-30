@@ -1,23 +1,77 @@
-
 {% load static %}
-<!DOCTYPE html>
+<!DOCTYPE html prefix="og: http://ogp.me/ns#">
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jadoo</title>
-    <link rel="icon" href="{% static 'index/assets/images/jadoo1.svg' %}">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+
+    <!-- Core SEO Meta Tags -->
+    <title>Jadoo :: Home</title>
+    <meta name="description" content="{{ seo.description }}">
+    <meta name="author" content="{{ seo.author }}">
+    <meta name="keywords" content="{{ seo.keywords }}">
+    <meta name="robots" content="{{ seo.robots }}">
+
+    <!-- Additional SEO Tags -->
+    <link rel="canonical" href="{{ request.build_absolute_uri }}" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <meta name="format-detection" content="telephone=yes"/>
+    <meta name="theme-color" content="#FF7100"/>
+    <meta name="mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="apple-mobile-web-app-title" content="Jadoo"/>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="{{ seo.dc_title }}" />
+    <meta property="og:description" content="{{ seo.dc_description }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'index/assets/images/Jadoo.png' %}" />
+    <meta property="og:image:secure_url" content="{{ request.scheme }}://{{ request.get_host }}{% static 'index/assets/images/Jadoo.png' %}"/>
+    <meta property="og:image:alt" content="Jadoo – Creator-Powered Ads That Work" />
+    <meta property="og:site_name" content="Jadoo" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="{{ seo.dc_title }}" />
+    <meta property="twitter:description" content="{{ seo.dc_description }}" />
+    <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'index/assets/images/Jadoo.png' %}" />
+    <meta name="twitter:site" content="@jadoo_ads" />
+    <meta name="twitter:creator" content="@jadoo_ads" />
+    <meta name="twitter:label1" content="Est. reading time" />
+    <meta name="twitter:data1" content="3 minutes" />
+
+    <!-- Dublin Core Metadata -->
+    <meta name="DC.title" content="{{ seo.dc_title }}">
+    <meta name="DC.description" content="{{ seo.dc_description }}">
+    <meta name="DC.creator" content="{{ seo.dc_creator }}">
+    <meta name="DC.publisher" content="{{ seo.dc_publisher }}">
+    <meta name="DC.subject" content="{{ seo.dc_subject }}">
+    <meta name="DC.type" content="{{ seo.dc_type }}">
+    <meta name="DC.format" content="{{ seo.dc_format }}">
+    <meta name="DC.language" content="{{ seo.dc_language }}">
+    <meta name="DC.rights" content="{{ seo.dc_rights }}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'index/assets/images/Jadoo_Fav.png' %}">
+
     <!-- Bootstrap 5.3.3 CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
     <!-- Bootstrap Icons 1.11.3 CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
     <!-- Local CSS -->
     <link rel="stylesheet" href="{% static 'index/dist/css/iconfont/tabler-icons.css' %}">
     <link rel="stylesheet" href="{% static 'index/dist/css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'bb/buildingblocks-assets/fonts/fonts.css' %}"/>
-    <link rel="stylesheet" href="{% static 'bb/css/bootstrap/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'bb/buildingblocks-assets/fonts/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'bb/css/bootstrap/bootstrap.min.css' %}">
 </head>
+
 <body>
     <!------------------------------>
     <!-- Header Start -->
@@ -31,7 +85,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto"></ul>
             <div class="d-flex align-items-center ms-auto">
-              <a class="btn btn-primary btn-hover-secondery text-capitalize" href="#">Contact Us</a>
+              <a class="btn btn-primary btn-hover-secondery text-capitalize" data-bs-toggle="modal" data-bs-target="#contactModal" href="#">Contact Us</a>
             </div>
           </div>
         </nav>
@@ -58,25 +112,25 @@
             <div class="row d-flex justify-content-center">
                 <div class="col-xxl-7 col-xl-8 col-lg-9 col-md-12 col-sm-12 col-12 text-center">
                     <div class="hero-title fs-1 fw-bold text-uppercase">
-                        Ads don't sell<br>
+                        {{ hero_section.main_title_1 }}<br>
                         <div class="highlight-hero-title position-relative">
                             <div class="highlight-hero-title-inner">
-                                People do
+                              {{ hero_section.main_title_2 }}
                             </div>
                         </div>
-                        unleash human influence
+                        {{ hero_section.highlighted_title }}
                     </div>
                     <p class="hero-subtitle fw-normal mx-auto">
-                      <strong>Your ads are getting ignored</strong>
+                      <strong>{{ hero_section.text_1 }}</strong>
                       <span aria-hidden="true">&middot;</span>
-                      <strong>So ditch them</strong>
+                      <strong>{{ hero_section.text_2 }}</strong>
                       <span aria-hidden="true">&middot;</span>
-                      <strong>Skip them</strong>
+                      <strong>{{ hero_section.text_3 }}</strong>
                       <span aria-hidden="true">&middot;</span>
-                      <strong>Tap into real influence</strong>
+                      <strong>{{ hero_section.text_4 }}</strong>
                     </p>
                     <p class="hero-subtitle fw-normal mx-auto mt-2">
-                      Jadoo activates everyday creators who move culture and spark conversations, turning them into your most effective and affordable marketing channel.
+                      {{ hero_section.affirmative_text }}
                     </p>
                       
                 </div>
@@ -96,20 +150,20 @@
           <div class="row d-flex align-items-center">
             <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-12 col-12">
               <h1 class="fw-bold text-uppercase">
-                <span>Why</span>
+                <span>{{ why_jadoo.text_title_1 }}</span>
                 <span class="highlight-hero-title position-relative">
                   <span class="highlight-hero-title-inner">
-                    Jadoo
+                    {{ why_jadoo.text_title_2 }}
                   </span>
                   <div class="team position-absolute">
                     <img src="{% static 'index/assets/images/feature-of-design/arrow.svg' %}" class="img-fluid">
-                    <div class="btn btn-primary text-capitalize fw-normal d-block">Built for Brands</div>
+                    <div class="btn btn-primary text-capitalize fw-normal d-block">{{ why_jadoo.text_title_4 }}</div>
                   </div>
                 </span><br>
-                matters<br> now
+                {{ why_jadoo.text_title_3 }}<br> {{ why_jadoo.text_title_5 }}
               </h1>
               <p class="mb-0 fs-5 lh-base fw-normal">
-                Consumers skip ads, block ads, and ignore ads. Jadoo helps brands bypass the noise by partnering with everyday creators who shape culture and conversations. We don’t sell reach, we deliver real influence.
+                {{ why_jadoo.paragraph }}
               </p>
               <a href="#how-it-works" class="btn btn-primary btn-hover-secondery text-capitalize fw-normal mt-4">See how it works</a>
             </div>
@@ -131,8 +185,8 @@
         <div class="container">
           <div class="mw-5xl mx-auto">
             <div class="text-center mb-24">
-            <h3 class="font-heading text-center mb-4">How <span style="color: #FF7100; font-weight: bold;">Jadoo</span> Works</h3>
-              <p class="text-light-dark mb-0">Connecting brands with creators for authentic, affordable, and impactful marketing.</p>
+            <h3 class="font-heading text-center mb-4">{{ how_it_works.text_title_1 }} <span style="color: #FF7100; font-weight: bold;">{{ how_it_works.text_title_2 }}</span> {{ how_it_works.text_title_3 }}</h3>
+              <p class="text-light-dark mb-0">{{ how_it_works.subtitle_text }}</p>
             </div>
             <div class="row">
               <div class="col-12 col-sm-6 mb-12 mb-lg-24">
@@ -145,19 +199,13 @@
                   </svg>
                   <div class="position-relative my-4">
                     <div class="position-absolute top-0 start-0 py-3 ms-n4 border-2 border-start border-primary"></div>
-                    <h5 class="display-3 fw-bold">Create a Campaign</h5>
+                    <h5 class="display-3 fw-bold">{{ how_it_works.title_1 }}</h5>
                   </div>
                   <div class="text-light-dark space-y-4">
                     <p>
-                      Tell us your goal whether it’s <strong>product awareness</strong>, <strong>website traffic</strong>, or <strong>app installs</strong>. 
+                      {{ how_it_works.title_1_text }}
                     </p>
                     <p>
-                      Then choose how you want to work with creators:
-                    </p>
-                    <ul class="list-disc pl-5 space-y-2">
-                      <li><strong>Grab & Go:</strong> Creators claim and run your campaign instantly.</li>
-                      <li><strong>Spotlight:</strong> You pick from handpicked creator pitches.</li>
-                    </ul>
                   </div>
                   
                 </div>
@@ -171,38 +219,12 @@
                   </svg>
                   <div class="position-relative my-5">
                     <div class="position-absolute top-0 start-0 py-3 ms-n4 border-2 border-start border-primary"></div>
-                    <h5 class="mb-0 display-3 fw-bold">Set a Budget</h5>
+                    <h5 class="mb-0 display-3 fw-bold">{{ how_it_works.title_2 }}</h5>
                   </div>
                   
                   <p class="text-light-dark">
-                    Every campaign starts with a <strong>minimum base budget</strong> this ensures creators are fairly compensated and your campaign meets our quality standards.
+                    {{ how_it_works.title_2_text }}
                   </p>
-                  
-                  <!-- Toggle Button -->
-                  <p>
-                    <a class="fw-semibold text-primary text-decoration-underline" data-bs-toggle="collapse" href="#budgetCollapse" role="button" aria-expanded="false" aria-controls="budgetCollapse">
-                      Show more
-                    </a>
-                  </p>
-                  
-                  <!-- Collapsible Content -->
-                  <div class="collapse text-light-dark" id="budgetCollapse">
-                    <p>Beyond the base, your total budget depends on several key choices:</p>
-                  
-                    <ul class="list-disc ps-4">
-                      <li><strong>Creator Tier</strong> – Choose between nano, micro, or macro creators. Higher tiers may require a larger investment.</li>
-                      <li><strong>Campaign Type</strong> – Awareness-based campaigns typically differ in pricing compared to performance-driven ones (e.g., app installs or link clicks).</li>
-                      <li><strong>Budget Distribution</strong> – You can choose to work with one creator or spread your budget across multiple creators for wider reach and diversity in content.</li>
-                    </ul>
-                  
-                    <p>
-                      No matter your budget as long as it meets our minimum threshold we’ll always match you with the right creators to make your campaign successful. You’re in control, and we’ll handle the heavy lifting.
-                    </p>
-                  
-                    <p class="mt-3">
-                      <a href="#" class="fw-semibold text-decoration-underline text-primary">View minimum thresholds and pricing details</a>
-                    </p>
-                  </div>
                   
                   
                 </div>
@@ -216,9 +238,9 @@
                   </svg>
                   <div class="position-relative my-4">
                     <div class="position-absolute top-0 start-0 py-3 ms-n4 border-2 border-start border-primary"></div>
-                    <h5 class="mb-0 display-3 fw-bold">Reach the Right Creators</h5>
+                    <h5 class="mb-0 display-3 fw-bold">{{ how_it_works.title_3 }}</h5>
                   </div>
-                  <p class="text-light-dark">Jadoo connects you with everyday creators who influence real people in real life no bots, no gimmicks, just authentic impact.</p>
+                  <p class="text-light-dark">{{ how_it_works.title_3_text }}</p>
                 </div>
               </div>
               <div class="col-12 col-sm-6">
@@ -232,9 +254,9 @@
                   </svg>
                   <div class="position-relative my-4">
                     <div class="position-absolute top-0 start-0 py-3 ms-n4 border-2 border-start border-primary"></div>
-                    <h5 class="display-3 fw-bold">Track Real Impact</h5>
+                    <h5 class="display-3 fw-bold">{{ how_it_works.title_4 }}</h5>
                   </div>
-                  <p class="text-light-dark">Get real-time insights: views, clicks, signups, downloads. Know exactly what you got for every dollar spent.</p>
+                  <p class="text-light-dark">{{ how_it_works.title_4_text }}</p>
                 </div>
               </div>
             </div>
@@ -242,97 +264,57 @@
         </div>
       </section>
 
+      
+      <section class="py-12 py-md-16 py-lg-24 position-relative">
+        <div class="container position-relative">
+          <div class="mw-5xl mx-auto py-20 px-8 bg-primary rounded-3">
+            <div class="mw-lg mw-xl-2xl mx-auto text-center">
+              <div class="mb-6">
+                <svg width="68" height="34" viewbox="0 0 68 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 34C1.99977 29.7976 2.8273 25.6364 4.43533 21.7539C6.04336 17.8713 8.40039 14.3436 11.3718 11.3721C14.3433 8.40056 17.8709 6.04346 21.7533 4.43539C25.6358 2.82732 29.7969 1.99977 33.9991 2C51.6726 2 66 16.3261 66 34" stroke="#FFC96D" stroke-width="4" stroke-miterlimit="10"></path>
+                  <path d="M9.22583 34C9.22583 27.4084 11.836 21.0868 16.482 16.4258C21.1281 11.7649 27.4295 9.14639 34 9.14639C40.5705 9.14639 46.872 11.7649 51.518 16.4258C56.1641 21.0868 58.7742 27.4084 58.7742 34" stroke="#FFF2D6" stroke-width="4" stroke-miterlimit="10"></path>
+                  <path d="M16.134 34C16.134 29.2617 18.0163 24.7174 21.3669 21.3669C24.7174 18.0163 29.2617 16.134 34 16.134C38.7384 16.134 43.2827 18.0163 46.6332 21.3669C49.9837 24.7174 51.866 29.2617 51.866 34" stroke="#530031" stroke-width="4" stroke-miterlimit="10"></path>
+                </svg>
+              </div>
+              <h3 class="font-heading mb-6 text-white">{{ business_proposition.text_title_1 }}</h3>
+              <p class="text-primary-light mb-10">{{ business_proposition.text_title_2 }}</p>
+              <div class="d-inline-block bg-white rounded-pill"><a class="btn btn-outline-light text-dark w-100" data-bs-toggle="modal" data-bs-target="#businessCostsModal" href="#">check Us out</a></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
       <!--End of How Jadoo works-->
 
       <!--Testimonial OR Brands we work with-->
 
-
-
-      <section class="py-5 bg-light">
-        <div class="container text-center mb-5">
-          <h3 class="fw-bold mb-3">Brands We Work With</h3>
-          <p class="text-muted mb-0">Trusted by innovative companies and platforms</p>
-        </div>
-      
-        <div class="container-fluid">
-          <div id="brandsCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-              <!-- Amazon -->
-              <div class="carousel-item active">
-                <div class="d-flex justify-content-center">
-                  <div class="card flex-shrink-0 text-center p-4" style="min-width: 220px; max-width: 260px;">
-                    <div class="mb-3 display-5 text-primary">
-                      <i class="bi bi-amazon"></i>
-                    </div>
-                    <h6 class="fw-semibold">Amazon Activate</h6>
-                  </div>
-                </div>
-              </div>
-      
-              <!-- Facebook -->
-              <div class="carousel-item">
-                <div class="d-flex justify-content-center">
-                  <div class="card flex-shrink-0 text-center p-4" style="min-width: 220px; max-width: 260px;">
-                    <div class="mb-3 display-5 text-primary">
-                      <i class="bi bi-facebook"></i>
-                    </div>
-                    <h6 class="fw-semibold">Facebook</h6>
-                  </div>
-                </div>
-              </div>
-      
-              <!-- Google -->
-              <div class="carousel-item">
-                <div class="d-flex justify-content-center">
-                  <div class="card flex-shrink-0 text-center p-4" style="min-width: 220px; max-width: 260px;">
-                    <div class="mb-3 display-5 text-primary">
-                      <i class="bi bi-google"></i>
-                    </div>
-                    <h6 class="fw-semibold">Google</h6>
-                  </div>
-                </div>
-              </div>
-      
-              <!-- TikTok -->
-              <div class="carousel-item">
-                <div class="d-flex justify-content-center">
-                  <div class="card flex-shrink-0 text-center p-4" style="min-width: 220px; max-width: 260px;">
-                    <div class="mb-3 display-5 text-primary">
-                      <i class="bi bi-tiktok"></i>
-                    </div>
-                    <h6 class="fw-semibold">TikTok</h6>
-                  </div>
-                </div>
-              </div>
-      
-              <!-- X / Twitter -->
-              <div class="carousel-item">
-                <div class="d-flex justify-content-center">
-                  <div class="card flex-shrink-0 text-center p-4" style="min-width: 220px; max-width: 260px;">
-                    <div class="mb-3 display-5 text-primary">
-                      <i class="bi bi-twitter-x"></i>
-                    </div>
-                    <h6 class="fw-semibold">X (Twitter)</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-      
-            <!-- Carousel Controls -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#brandsCarousel" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon bg-dark rounded-4 fs-5" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#brandsCarousel" data-bs-slide="next">
-              <span class="carousel-control-next-icon bg-dark rounded-4 fs-5" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
+      <section class="py-5" id="our-partners">
+        <div class="container">
+          <div class="text-center mb-5">
+            <h3 class="font-heading fw-bold text-primary">{{ brands_we_work_with.text_title_1 }}</h3>
+            <p class="text-muted">{{ brands_we_work_with.text_title_2 }}</p>
           </div>
-      
-          <div class="text-center mt-4">
-            <span class="text-muted">Want to partner with us? 
-              <a href="#" class="fw-semibold text-primary text-decoration-underline">Get in touch</a>
-            </span>
+          
+          <!-- Horizontal scrolling container -->
+          <div class="d-flex overflow-hidden" style="scrollbar-width: none; -ms-overflow-style: none;">
+            <div class="d-flex flex-nowrap pb-4" style="overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;">
+              <!-- Partner items -->
+              {% for partner in brands %}
+                <div class="card border-0 shadow-sm rounded-lg mx-2 flex-shrink-0" style="width: 160px; height: 180px;">
+                  <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                    <i class="bi bi-{{ partner.brand_bi_bi }} fs-1 text-primary mb-3"></i>
+                    <h6 class="mb-0">{{ partner.brand_name }}</h6>
+                  </div>
+                </div>
+              {% endfor %}
+              
+            </div>
+          </div>
+          
+          <!-- Scroll hint for users -->
+          <div class="text-center mt-3">
+            <small class="text-muted"><i class="bi bi-arrow-left-right me-1"></i> Scroll to see more partners</small>
           </div>
         </div>
       </section>
@@ -355,9 +337,9 @@
                   <path d="M16.134 34C16.134 29.2617 18.0163 24.7174 21.3669 21.3669C24.7174 18.0163 29.2617 16.134 34 16.134C38.7384 16.134 43.2827 18.0163 46.6332 21.3669C49.9837 24.7174 51.866 29.2617 51.866 34" stroke="#530031" stroke-width="4" stroke-miterlimit="10"></path>
                 </svg>
               </div>
-              <h3 class="font-heading mb-6 text-white">Are you a content creator willing to join Our platform?</h3>
-              <p class="text-primary-light mb-10">Come on lets work together, learn more about us👇</p>
-              <div class="d-inline-block bg-white rounded-pill"><a class="btn btn-outline-light text-dark w-100" href="#">check Us out</a></div>
+              <h3 class="font-heading mb-6 text-white">{{ creator_proposition.text_title_1 }}</h3>
+              <p class="text-primary-light mb-10">{{ creator_proposition.text_title_2 }}</p>
+              <div class="d-inline-block bg-white rounded-pill"><a class="btn btn-outline-light text-dark w-100" data-bs-toggle="modal" data-bs-target="#creatorRewardsModal" href="#">check Us out</a></div>
             </div>
           </div>
         </div>
@@ -375,27 +357,30 @@
           <div class="col-lg-9">
             <div class="row">
               <div class="col-6 col-md-3 mb-8">
-                <h6 class="mb-4 fw-medium">Platform</h6>
+                <h6 class="mb-4 fw-medium">Policies</h6>
                 <ul class="list-unstyled mb-0">
-                  <li class="mb-4"><a class="btn btn-link text-light-dark p-0" href="#">Contact</a></li>
+                  <li class="mb-4"><a class="btn btn-link text-light-dark p-0" data-bs-toggle="modal"  data-bs-target="#privacyModal" href="#">Privacy Policy</a></li>
+                  <li class="mb-4"><a class="btn btn-link text-light-dark p-0" data-bs-toggle="modal"  data-bs-target="#termsModal" href="#">Terms & Conditions</a></li>
+                  <li class="mb-4"><a class="btn btn-link text-light-dark p-0" data-bs-toggle="modal" data-bs-target="#refundModal" href="#">Refund Policy</a></li>
                 </ul>
               </div>
               <div class="col-6 col-md-3 mb-8">
-                <h6 class="mb-4 fw-medium">Company</h6>
+                <h6 class="mb-4 fw-medium">Support</h6>
                 <ul class="list-unstyled mb-0">
-                  <li><a class="btn btn-link text-light-dark p-0" href="#">Contact</a></li>
+                  <li><a class="btn btn-link text-light-dark p-0" data-bs-toggle="modal" data-bs-target="#contactModal" href="#">Contact</a></li>
                 </ul>
               </div>
               <div class="col-6 col-md-3">
-                <h6 class="mb-4 fw-medium">Resources</h6>
+                <h6 class="mb-4 fw-medium">Costs and Rewards</h6>
                 <ul class="list-unstyled mb-0">
-                  <li><a class="btn btn-link text-light-dark p-0" href="#">Support</a></li>
+                  <li><a class="btn btn-link text-light-dark p-0" data-bs-toggle="modal" data-bs-target="#creatorRewardsModal" href="#">For Creators</a></li>
+                  <li><a class="btn btn-link text-light-dark p-0" data-bs-toggle="modal"  data-bs-target="#businessCostsModal" href="#">For Businesses</a></li>
                 </ul>
               </div>
               <div class="col-6 col-md-3">
-                <h6 class="mb-4 fw-medium">Community</h6>
+                <h6 class="mb-4 fw-medium">Blog</h6>
                 <ul class="list-unstyled mb-0">
-                  <li class="mb-4"><a class="btn btn-link text-light-dark p-0" href="#">Discord Server</a></li>
+                  <li class="mb-4"><a class="btn btn-link text-light-dark p-0" data-bs-toggle="modal" data-bs-target="#blogModal" href="#">Blog</a></li>
                 </ul>
               </div>
             </div>
@@ -403,110 +388,453 @@
         </div>
       </div>
     </section>
+
+
+
+<!----------MODALS ON OUR INDEX.HTML PAGE------------------------------------------------>  
+
+
+              <!-- Privacy Policy Modal -->
+              <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content border-0" style="border-radius: 1.25rem;">
+                    <!-- Modal Header -->
+                    <div class="modal-header border-0 position-relative">
+                      <div class="w-100 text-center">
+                        <i class="bi bi-shield-lock fs-1 text-primary mb-2"></i>
+                        <h5 class="modal-title fs-4 fw-bold" id="privacyModalLabel">Privacy Policy</h5>
+                      </div>
+                      <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                    </div>
+              
+                    <!-- Modal Body -->
+                    <div class="modal-body px-4 py-0">
+                      <div class="policy-content" style="max-height: 60vh; overflow-y: auto;">
+                        <h6 class="fw-medium">{{ privacy_policy.text_title_1 }}</h6>
+                        <p class="text-muted small mb-4">{{ privacy_policy.text_1 }}</p>
+              
+                        <h6 class="fw-medium">{{ privacy_policy.text_title_2 }}</h6>
+                        <p class="text-muted small mb-4">{{ privacy_policy.text_2 }}</p>
+              
+                        <h6 class="fw-medium">{{ privacy_policy.text_title_3 }}</h6>
+                        <p class="text-muted small mb-4">{{ privacy_policy.text_3 }}</p>
+              
+                        <h6 class="fw-medium">{{ privacy_policy.text_title_4 }}</h6>
+                        <p class="text-muted small">{{ privacy_policy.text_4 }}</p>
+                      </div>
+                    </div>
+              
+                    <!-- Modal Footer -->
+                    <div class="modal-footer border-0 justify-content-center">
+                      <button type="button" class="btn btn-primary px-4 rounded-pill" data-bs-dismiss="modal">I Understand</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+                <!-- Terms & Conditions Modal -->
+                <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content border-0" style="border-radius: 1.25rem;">
+                      <!-- Modal Header -->
+                      <div class="modal-header border-0 position-relative">
+                        <div class="w-100 text-center">
+                          <i class="bi bi-file-text fs-1 text-primary mb-2"></i>
+                          <h5 class="modal-title fs-4 fw-bold" id="termsModalLabel">Terms & Conditions</h5>
+                        </div>
+                        <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal"
+                          aria-label="Close"></button>
+                      </div>
+                
+                      <!-- Modal Body -->
+                      <div class="modal-body px-4 py-0">
+                        <div class="terms-content" style="max-height: 60vh; overflow-y: auto;">
+                          <h6 class="fw-medium">{{ terms_and_conditions.text_title_1 }}</h6>
+                          <p class="text-muted small mb-4">{{ terms_and_conditions.text_1 }}</p>
+                
+                          <h6 class="fw-medium">{{ terms_and_conditions.text_title_2 }}</h6>
+                          <p class="text-muted small mb-4">{{ terms_and_conditions.text_2 }}</p>
+                
+                          <h6 class="fw-medium">{{ terms_and_conditions.text_title_3 }}</h6>
+                          <p class="text-muted small mb-4">{{ terms_and_conditions.text_3 }}</p>
+                
+                          <h6 class="fw-medium">{{ terms_and_conditions.text_title_4 }}</h6>
+                          <p class="text-muted small">{{ terms_and_conditions.text_4 }}</p>
+                        </div>
+                      </div>
+                
+                      <!-- Modal Footer -->
+                      <div class="modal-footer border-0 justify-content-center">
+                        <button type="button" class="btn btn-primary px-4 rounded-pill" data-bs-dismiss="modal">Accept Terms</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+              <!-- Refund Policy Modal -->
+              <div class="modal fade" id="refundModal" tabindex="-1" aria-labelledby="refundModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content border-0" style="border-radius: 1.25rem;">
+                    <!-- Modal Header -->
+                    <div class="modal-header border-0 position-relative">
+                      <div class="w-100 text-center">
+                        <i class="bi bi-arrow-left-right fs-1 text-primary mb-2"></i>
+                        <h5 class="modal-title fs-4 fw-bold" id="refundModalLabel">Refund Policy</h5>
+                        <p class="text-muted small mb-0">Our commitment to your satisfaction</p>
+                      </div>
+                      <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    
+                    <!-- Modal Body -->
+                    <div class="modal-body px-4 py-0">
+                      <div class="refund-content" style="max-height: 60vh; overflow-y: auto;">
+                        <!-- Policy Section 1 -->
+                        <div class="d-flex mb-4">
+                          <div class="flex-shrink-0 me-3">
+                            <div class="bg-primary bg-opacity-10 p-2 rounded-circle">
+                              <i class="bi bi-calendar-check text-primary"></i>
+                            </div>
+                          </div>
+                          <div>
+                            <h6 class="fw-medium mb-1">{{ refund_policy.text_title_1 }}</h6>
+                            <p class="text-muted small mb-0">{{ refund_policy.text_1 }}</p>
+                          </div>
+                        </div>
+                        
+                        <!-- Policy Section 2 -->
+                        <div class="d-flex mb-4">
+                          <div class="flex-shrink-0 me-3">
+                            <div class="bg-primary bg-opacity-10 p-2 rounded-circle">
+                              <i class="bi bi-x-circle text-primary"></i>
+                            </div>
+                          </div>
+                          <div>
+                            <h6 class="fw-medium mb-1">{{ refund_policy.text_title_2 }}</h6>
+                            <p class="text-muted small mb-0">{{ refund_policy.text_2 }}</p>
+                          </div>
+                        </div>
+                        
+                        <!-- Policy Section 3 -->
+                        <div class="d-flex mb-4">
+                          <div class="flex-shrink-0 me-3">
+                            <div class="bg-primary bg-opacity-10 p-2 rounded-circle">
+                              <i class="bi bi-arrow-repeat text-primary"></i>
+                            </div>
+                          </div>
+                          <div>
+                            <h6 class="fw-medium mb-1">{{ refund_policy.text_title_3 }}</h6>
+                            <p class="text-muted small mb-0">{{ refund_policy.text_3 }}</p>
+                          </div>
+                        </div>
+                        
+                        <!-- Policy Section 4 -->
+                        <div class="d-flex">
+                          <div class="flex-shrink-0 me-3">
+                            <div class="bg-primary bg-opacity-10 p-2 rounded-circle">
+                              <i class="bi bi-headset text-primary"></i>
+                            </div>
+                          </div>
+                          <div>
+                            <h6 class="fw-medium mb-1">{{ refund_policy.text_title_4 }}</h6>
+                            <p class="text-muted small mb-0">{{ refund_policy.text_4 }}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Modal Footer -->
+                    <div class="modal-footer border-0 justify-content-center">
+                      <button type="button" class="btn btn-outline-secondary me-2 px-4 rounded-pill" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+                <!-- Business Costs Modal -->
+                <div class="modal fade" id="businessCostsModal" tabindex="-1" aria-labelledby="businessCostsModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content border-0" style="border-radius: 1.25rem;">
+                  <div class="modal-header border-0 position-relative">
+                    <div class="w-100 text-center">
+                    <i class="bi bi-graph-up fs-1 text-primary mb-2"></i>
+                    <h5 class="modal-title fs-4 fw-bold" id="businessCostsModalLabel">
+                      {{ business_proposition_modal.text_title_1 }}
+                    </h5>
+                    <p class="text-muted small mb-0">{{ business_proposition_modal.text_title_2 }}</p>
+                    </div>
+                    <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body px-4 py-0">
+                    <div class="costs-content">
+                    <!-- Pricing Tier 1 -->
+                    <div class="card border-0 shadow-sm mb-3">
+                      <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="fw-bold mb-0 text-primary">{{ business_proposition_modal.card_title_1 }}</h6>
+                        <span class="badge bg-primary bg-opacity-10 text-primary">{{ business_proposition_modal.basic_price }}</span>
+                      </div>
+                      <ul class="list-unstyled text-muted small mb-0">
+                        <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i> {{ business_proposition_modal.promise_1 }}</li>
+                        <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i> {{ business_proposition_modal.promise_2 }}</li>
+                        <li class="mb-1"><i class="bi bi-check-circle-fill text-success me-2"></i> {{ business_proposition_modal.promise_3 }}</li>
+                      </ul>
+                      </div>
+                    </div>
+                    <div class="alert alert-primary mt-4 mb-0">
+                      <i class="bi bi-info-circle-fill me-2"></i> {{ business_proposition_modal.notification_text }}
+                    </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer border-0 justify-content-center">
+                    <button type="button" class="btn btn-outline-primary me-2 px-4 rounded-pill" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary px-4 rounded-pill" hidden onclick="location.href='/business-signup'">
+                    <i class="bi bi-rocket-takeoff me-2"></i>Get Started
+                    </button>
+                  </div>
+                  </div>
+                </div>
+                </div>
+
+
+
+
+                <!-- Creator Rewards Modal -->
+                <div class="modal fade" id="creatorRewardsModal" tabindex="-1" aria-labelledby="creatorRewardsModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content border-0" style="border-radius: 1.25rem; background: linear-gradient(to bottom, #f8f9fa, #fff);">
+                    <div class="modal-header border-0 position-relative">
+                      <div class="w-100 text-center">
+                        <i class="bi bi-stars fs-1 text-warning mb-2"></i>
+                        <h5 class="modal-title fs-4 fw-bold" id="creatorRewardsModalLabel">{{ creator_proposition_modal.text_title_1 }}</h5>
+                        <p class="text-muted small mb-0">{{ creator_proposition_modal.text_title_2 }}</p>
+                      </div>
+                      <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body px-4 py-0">
+                      <div class="rewards-content">
+                        <!-- Reward 1 -->
+                        <div class="d-flex align-items-start mb-4 p-3 bg-white rounded-3 shadow-sm">
+                          <div class="flex-shrink-0 me-3">
+                            <div class="bg-warning bg-opacity-10 p-3 rounded-circle">
+                              <i class="bi bi-cash-coin fs-4 text-warning"></i>
+                            </div>
+                          </div>
+                          <div>
+                            <h6 class="fw-bold mb-1">{{ creator_proposition_modal.card_title_1 }}</h6>
+                            <p class="text-muted small mb-0">{{ creator_proposition_modal.promise_1 }}</p>
+                            <span class="badge bg-warning bg-opacity-10 text-warning mt-2">{{ creator_proposition_modal.promise_2 }}</span>
+                          </div>
+                        </div>
+                        <!-- Reward 2 -->
+                        <div class="d-flex align-items-start mb-4 p-3 bg-white rounded-3 shadow-sm">
+                          <div class="flex-shrink-0 me-3">
+                            <div class="bg-warning bg-opacity-10 p-3 rounded-circle">
+                              <i class="bi bi-gift fs-4 text-warning"></i>
+                            </div>
+                          </div>
+                          <div>
+                            <h6 class="fw-bold mb-1">{{ creator_proposition_modal.card_title_2 }}</h6>
+                            <p class="text-muted small mb-0">{{ creator_proposition_modal.promise_3 }}</p>
+                          </div>
+                        </div>
+                        <!-- Reward 3 -->
+                        <div class="d-flex align-items-start mb-4 p-3 bg-white rounded-3 shadow-sm">
+                          <div class="flex-shrink-0 me-3">
+                            <div class="bg-warning bg-opacity-10 p-3 rounded-circle">
+                              <i class="bi bi-graph-up-arrow fs-4 text-warning"></i>
+                            </div>
+                          </div>
+                          <div>
+                            <h6 class="fw-bold mb-1">{{ creator_proposition_modal.card_title_3 }}</h6>
+                            <p class="text-muted small mb-0">{{ creator_proposition_modal.promise_4 }}</p>
+                          </div>
+                        </div>
+                        <!-- Reward 4 -->
+                        <div class="d-flex align-items-start p-3 bg-white rounded-3 shadow-sm">
+                          <div class="flex-shrink-0 me-3">
+                            <div class="bg-warning bg-opacity-10 p-3 rounded-circle">
+                              <i class="bi bi-arrow-repeat fs-4 text-warning"></i>
+                            </div>
+                          </div>
+                          <div>
+                            <h6 class="fw-bold mb-1">{{ creator_proposition_modal.card_title_4 }}</h6>
+                            <p class="text-muted small mb-0">{{ creator_proposition_modal.promise_5 }}</p>
+                            <span class="badge bg-warning bg-opacity-10 text-warning mt-2">{{ creator_proposition_modal.promise_6 }}</span>
+                          </div>
+                        </div>
+                        <div class="alert alert-warning mt-4 mb-0">
+                          <i class="bi bi-lightning-charge-fill me-2"></i> {{ creator_proposition_modal.notification_text }}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer border-0 justify-content-center">
+                      <button type="button" class="btn btn-outline-primary me-2 px-4 rounded-pill" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-warning px-4 rounded-pill text-white" hidden onclick="location.href='/creator-signup'">
+                        <i class="bi bi-person-plus me-2"></i>Join as Creator
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+                <!-- Blog Post Modal -->
+                <div class="modal fade" id="blogModal" tabindex="-1" aria-labelledby="blogModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                    <div class="modal-content border-0 shadow">
+                      <!-- Modal Header -->
+                      <div class="modal-header border-0 bg-light">
+                        <div class="w-100 text-center">
+                          <i class="bi bi-newspaper fs-3 text-primary mb-2"></i>
+                          <h5 class="modal-title fs-4 fw-bold" id="blogModalLabel">Latest Blog Posts</h5>
+                          <p class="text-muted small mb-0">Industry insights and trends</p>
+                        </div>
+                        <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <!-- Modal Body - Scrollable Content -->
+                      <div class="modal-body p-4" style="max-height: 70vh; overflow-y: auto;">
+                        {% if blogs %}
+                          {% for blog in blogs %}
+                            <div class="card border-0 shadow-sm mb-4">
+                              <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start">
+                                  <h6 class="fw-bold text-primary mb-3">{{ blog.title_1 }}</h6>
+                                  {% if forloop.first %}
+                                    <span class="badge bg-primary bg-opacity-10 text-primary">New</span>
+                                  {% endif %}
+                                </div>
+                                <p class="text-muted mb-3">{{ blog.summary_text }}</p>
+                                <button class="btn btn-sm btn-link text-primary p-0 d-flex align-items-center"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseBlog{{ forloop.counter }}"
+                                        aria-expanded="false"
+                                        aria-controls="collapseBlog{{ forloop.counter }}">
+                                  <i class="bi bi-chevron-down me-1"></i> Continue Reading
+                                </button>
+                                <div class="collapse mt-3" id="collapseBlog{{ forloop.counter }}">
+                                  <div class="pt-3">
+                                    <p class="mb-0">{{ blog.full_text }}</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          {% endfor %}
+                        {% else %}
+                          <div class="text-center text-muted py-5">
+                            <i class="bi bi-emoji-frown fs-1 mb-3"></i>
+                            <p class="mb-0">No blog posts available yet.</p>
+                          </div>
+                        {% endif %}
+                      </div>
+                      <!-- Modal Footer -->
+                      <div class="modal-footer border-0 bg-light">
+                        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+<!----------END OF MODALS IN OUR INDEX.HTML PAGE---------------------------------------------------->
+
     <!------------------------------>
     <!-- Footer Section End  -->
     <!------------------------------>
-
-    <!-- Floating menu button for small screens -->
-    <button class="btn btn-primary d-block d-xl-none position-fixed bottom-0 end-0 m-3 rounded-circle p-3" data-bs-toggle="modal" data-bs-target="#menuModal" aria-label="Open Menu" data-bs-toggle-toast="menuToast">
-      <i class="bi bi-list fs-4"></i>
+    <!-- Floating contact button for small screens -->
+    <button class="btn btn-primary d-block d-xl-none position-fixed bottom-0 end-0 m-3 rounded-circle p-3 shadow-lg" 
+            data-bs-toggle="modal" 
+            data-bs-target="#contactModal"
+            style="width: 56px; height: 56px;"
+            aria-label="Contact Options">
+      <i class="bi bi-telephone-inbound-fill fs-4"></i>
+      <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+        <span class="visually-hidden">New alerts</span>
+      </span>
     </button>
 
-    <!-- Toast notification for menu hint -->
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
-      <div id="menuToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="3000">
-          <div class="toast-body">
-              This is the menu
-          </div>
-      </div>
-    </div>
-        
-    <div class="modal fade" id="menuModal" tabindex="-1" aria-labelledby="menuModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-md">
-          <div class="modal-content">
-              <div class="modal-header border-0">
-                  <div class="logo">
-                      <a class="navbar-brand py-0 me-0" href="{% url 'index' %}"><img src="{% static 'index/assets/images/jadoo1.svg' %}" alt="Jadoo Logo"></a>
-                  </div>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body pt-0">
-                  <ul class="nav flex-column">
-                      <li class="nav-item">
-                          <a class="nav-link" aria-current="page" href="{% url 'index' %}">Home</a>
-                      </li>
-                  </ul>
-              </div>
-              <div class="modal-footer border-0">
-                  <a class="btn btn-primary text-capitalize w-100" href="#">Contact Us</a>
-              </div>
-          </div>
-      </div>
-  </div>
-
-      <!-- Launch Modal -->
-      <div class="modal fade" id="launchModal" tabindex="-1" aria-labelledby="launchModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-          <div class="modal-content rounded-4 shadow-lg">
-            <div class="modal-header border-0 bg-primary text-white p-4">
-              <h5 class="modal-title fw-bold fs-3" id="launchModalLabel">
-                <i class="bi bi-rocket-takeoff me-2"></i>Jadoo is Launching Soon!
-              </h5>
-              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- Contact Modal -->
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 overflow-hidden" style="border-radius: 1.25rem;">
+          <!-- Modal Header -->
+          <div class="modal-header border-0 position-relative pb-0">
+            <div class="w-100 text-center">
+              <h5 class="modal-title fs-4 fw-bold" id="contactModalLabel">Let's Connect!</h5>
+              <p class="text-muted mb-0">Choose your preferred contact method</p>
             </div>
-            <div class="modal-body p-4">
-              <div class="text-center mb-4">
-                <h4 class="fw-bold text-dark">Get Ready for the Future of Influence</h4>
-                <p class="text-muted fs-5">
-                  We're launching on <strong>June 15, 2025</strong>! Join our waitlist to be the first to connect brands with creators who spark real conversations.
-                </p>
-              </div>
-              <div class="card shadow-sm p-4 mb-4">
-                <h5 class="fw-semibold text-center mb-3">Why Join Jadoo?</h5>
-                <ul class="list-unstyled">
-                  <li class="d-flex align-items-center mb-2">
-                    <i class="bi bi-check-circle-fill text-primary me-2"></i>
-                    <span>Authentic creator partnerships</span>
-                  </li>
-                  <li class="d-flex align-items-center mb-2">
-                    <i class="bi bi-check-circle-fill text-primary me-2"></i>
-                    <span>Affordable marketing solutions</span>
-                  </li>
-                  <li class="d-flex align-items-center">
-                    <i class="bi bi-check-circle-fill text-primary me-2"></i>
-                    <span>Real-time campaign insights</span>
-                  </li>
-                </ul>
-              </div>
-              <div class="text-center">
-                <h5 class="fw-semibold mb-3">Join Our Waitlist</h5>
-                <form id="waitlistForm" method="POST">
-                  {% csrf_token %}
-                  <div class="mb-3">
-                    <label for="userType" class="form-label fw-medium">I am a:</label>
-                    <select class="form-select rounded-pill py-2" id="userType" name="userType" required>
-                      <option value="" disabled selected>Select an option</option>
-                      <option value="creator">Creator</option>
-                      <option value="business">Business</option>
-                    </select>
-                  </div>
-                  <div class="mb-3">
-                    <label for="email" class="form-label fw-medium">Email Address</label>
-                    <input type="email" class="form-control rounded-pill py-2" id="email" name="email" placeholder="Enter your email" required>
-                  </div>
-                  <button type="submit" class="btn btn-primary rounded-pill px-4 py-2">
-                    <i class="bi bi-envelope-fill me-2"></i>Join Now
-                  </button>
-                </form>
+            <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+            <!-- Modal Body -->
+            <div class="modal-body px-4 py-0">
+              <div class="row g-3">
+                <!-- WhatsApp Button -->
+                {% if contact_us.whatsapp_number %}
+                <div class="col-12">
+                  <a href="https://wa.me/{{ contact_us.whatsapp_number|urlencode }}" 
+                     class="btn btn-outline-success d-flex align-items-center justify-content-between p-3 w-100 border-2"
+                     style="border-radius: 12px; transition: all 0.3s ease;"
+                     onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 12px rgba(37, 211, 102, 0.2)'"
+                     onmouseout="this.style.transform=''; this.style.boxShadow='none'">
+                    <div class="d-flex align-items-center">
+                      <div class="bg-success bg-opacity-10 p-2 rounded-circle me-3">
+                        <i class="bi bi-whatsapp fs-3 text-success"></i>
+                      </div>
+                      <div class="text-start">
+                        <h6 class="mb-0 fw-bold">WhatsApp Chat</h6>
+                        <small class="text-muted">Instant messaging</small>
+                      </div>
+                    </div>
+                    <i class="bi bi-arrow-right-short fs-4 text-success"></i>
+                  </a>
+                </div>
+                {% endif %}
+                
+                <!-- Email Button -->
+                {% if contact_us.email %}
+                <div class="col-12">
+                  <a href="mailto:{{ contact_us.email }}" 
+                     class="btn btn-outline-primary d-flex align-items-center justify-content-between p-3 w-100 border-2"
+                     style="border-radius: 12px; transition: all 0.3s ease;"
+                     onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 12px rgba(13, 110, 253, 0.2)'"
+                     onmouseout="this.style.transform=''; this.style.boxShadow='none'">
+                    <div class="d-flex align-items-center">
+                      <div class="bg-primary bg-opacity-10 p-2 rounded-circle me-3">
+                        <i class="bi bi-envelope fs-3 text-primary"></i>
+                      </div>
+                      <div class="text-start">
+                        <h6 class="mb-0 fw-bold">Email Us</h6>
+                        <small class="text-muted">24-hour response</small>
+                      </div>
+                    </div>
+                    <i class="bi bi-arrow-right-short fs-4 text-primary"></i>
+                  </a>
+                </div>
+                {% endif %}
               </div>
             </div>
-            <div class="modal-footer border-0 p-4">
-              <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Maybe Later</button>
+          
+          <!-- Modal Footer -->
+          <div class="modal-footer border-0 flex-column">
+            <p class="text-muted small mb-2">Prefer a call? <a href="tel:{{ contact_us.whatsapp_number }}" class="text-decoration-none">{{ contact_us.whatsapp_number }}</a></p>
+            <div class="d-flex justify-content-center gap-3 mt-2">
+              <a href="#" class="text-decoration-none text-muted"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="text-decoration-none text-muted"><i class="bi bi-twitter-x"></i></a>
+              <a href="#" class="text-decoration-none text-muted"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="text-decoration-none text-muted"><i class="bi bi-linkedin"></i></a>
             </div>
           </div>
         </div>
       </div>
-
+    </div>
+  </div>
     <!------------------------------>
     <!----------- Js Libs ---------->
     <!------------------------------>
@@ -516,20 +844,6 @@
     <script src="{% static 'index/dist/js/custom.js' %}"></script>
     <script src="{% static 'bb/js/bootstrap/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'bb/js/main.js' %}"></script>
-
-        <!-- Modal Auto-Show Script -->
-        <script>
-          document.addEventListener('DOMContentLoaded', function () {
-            // Random delay between 30 and 60 seconds
-            const delay = Math.floor(Math.random() * (60000 - 30000 + 1)) + 30000;
-            setTimeout(function () {
-              const launchModal = new bootstrap.Modal(document.getElementById('launchModal'), {
-                keyboard: true
-              });
-              launchModal.show();
-            }, delay);
-          });
-        </script>
 
 </body>
 </html>

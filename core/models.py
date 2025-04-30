@@ -1,4 +1,53 @@
 from django.db import models
+from django.utils import timezone
+
+
+class Visitor(models.Model):
+    ip_address = models.GenericIPAddressField(blank=True, null=True)
+    location = models.CharField(max_length=255, blank=True, null=True)
+    user_agent = models.TextField(blank=True, null=True)
+    url_path = models.CharField(max_length=500, blank=True, null=True)
+    method = models.CharField(max_length=10, blank=True, null=True)
+    referrer = models.URLField(blank=True, null=True)
+    visit_date = models.DateTimeField(default=timezone.now, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.ip_address} visited {self.url_path} on {self.visit_date}"
+
+
+class SEOMetaTag(models.Model):
+    # Standard Meta Tags
+    description = models.TextField(blank=True, null=True)
+    author = models.CharField(max_length=255, blank=True, null=True)
+    keywords = models.TextField(blank=True, null=True)
+    robots = models.CharField(
+        max_length=255, 
+        default="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        blank=True, null=True
+    )
+
+    # Dublin Core Tags
+    dc_title = models.CharField(max_length=255, blank=True, null=True)
+    dc_description = models.TextField(blank=True, null=True)
+    dc_creator = models.CharField(max_length=255, blank=True, null=True)
+    dc_publisher = models.CharField(max_length=255, blank=True, null=True)
+    dc_subject = models.TextField(blank=True, null=True)
+    dc_type = models.CharField(max_length=100, default="website", blank=True, null=True)
+    dc_format = models.CharField(max_length=100, default="text/html", blank=True, null=True)
+    dc_language = models.CharField(max_length=20, default="en-US", blank=True, null=True)
+    dc_rights = models.CharField(
+        max_length=255,
+        default=f"Copyright © {timezone.now().year} Jadoo. All rights reserved.", blank=True, null=True
+    )
+
+    updated_at = models.DateTimeField(auto_now=True, blank=True, null=True)
+
+    def __str__(self):
+        return f"SEO Metadata - Last updated on {self.updated_at.strftime('%Y-%m-%d')}"
+
+    class Meta:
+        verbose_name = "SEO Meta Tag"
+        verbose_name_plural = "SEO Meta Tags"
 
 
 # Index.html dynamic models here ----------------------------------------------------------------------
@@ -38,46 +87,46 @@ class How_it_works(models.Model):
     text_title_3 = models.TextField(blank=True, null=True)  # Works
     subtitle_text = models.TextField(blank=True, null=True)  # Connecting brands ..
 
+    title_1 = models.TextField(blank=True, null=True)
+    title_1_text = models.TextField(blank=True, null=True)
 
-    sub_title_1 = models.TextField(blank=True, null=True)  # create a campaign
-    sb1_text_1 = models.TextField(blank=True, null=True)  # Choose a campaign type and set your budget
-    sb1_text_2 = models.TextField(blank=True, null=True)  # Choose a campaign type and set your budget
+    title_2 = models.TextField(blank=True, null=True)
+    title_2_text = models.TextField(blank=True, null=True)
 
-    listing_1 = models.TextField(blank=True, null=True)  # Choose a campaign type and set your budget
-    listing_1_text = models.TextField(blank=True, null=True)  # Choose a campaign type and set your budget
+    title_3 = models.TextField(blank=True, null=True)
+    title_3_text = models.TextField(blank=True, null=True)
 
-    listing_2 = models.TextField(blank=True, null=True)  # Choose a campaign type and set your budget
-    listing_2_text = models.TextField(blank=True, null=True)  # Choose a campaign type and set your budget
-
-
-    sub_title_2 = models.TextField(blank=True, null=True)  # Set a budget
-    sb2_text_1 = models.TextField(blank=True, null=True)  # Choose a campaign type and set your budget
-    sb2_text_2 = models.TextField(blank=True, null=True)  # Choose a campaign type and set your budget
-    sb2_text_3 = models.TextField(blank=True, null=True)  # Choose a campaign type and set your budget
-
-    detail_text_1 = models.TextField(blank=True, null=True)  # Choose a campaign type and set your budget
-
-    dt_1 = models.TextField(blank=True, null=True)  # Choose a campaign type and set your budget
-    dt_1_text = models.TextField(blank=True, null=True)  # Choose a campaign type and set your budget
-
-    dt_2 = models.TextField(blank=True, null=True)  # Choose a campaign type and set your budget
-    dt_2_text = models.TextField(blank=True, null=True)  # Choose a campaign type and set your budget
-
-    dt_3 = models.TextField(blank=True, null=True)  # Choose a campaign type and set your budget
-    dt_3_text = models.TextField(blank=True, null=True)  # Choose a campaign type and set your budget
-
-    closing_text = models.TextField(blank=True, null=True)  # Choose a campaign type and set your budget
-
-
-    sub_title_3 = models.TextField(blank=True, null=True)  # Reach the right Creators
-    sb3_text_1 = models.TextField(blank=True, null=True)  # Choose a campaign type and set your budget
-
-
-    sub_title_4 = models.TextField(blank=True, null=True)  # Choose a campaign type and set your budget
-    sb4_text_1 = models.TextField(blank=True, null=True)  # Choose a campaign type and set your budget
+    title_4 = models.TextField(blank=True, null=True)
+    title_4_text = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return "How it works Section"
+    
+
+
+class business_proposition(models.Model):
+    text_title_1 = models.TextField(blank=True, null=True)  # Business
+    text_title_2 = models.TextField(blank=True, null=True)  # Proposition
+
+    def __str__(self):
+        return "Business Proposition Section"
+    
+
+class business_proposition_modal(models.Model):
+    text_title_1 = models.TextField(blank=True, null=True)  # Business
+    text_title_2 = models.TextField(blank=True, null=True)  # Proposition
+
+    card_title_1 = models.TextField(blank=True, null=True)  # Name of plan
+    basic_price = models.CharField(max_length=20, blank=True, null=True)  # Basic plan price
+    promise_1 = models.TextField(blank=True, null=True)  # Promise 1
+    promise_2 = models.TextField(blank=True, null=True)  # Promise 2
+    promise_3 = models.TextField(blank=True, null=True)  # Promise 3
+
+    notification_text = models.TextField(blank=True, null=True)  # Notification text
+
+    def __str__(self):
+        return "Business Proposition Modal Section"
+
     
 
 class Brands_we_work_with(models.Model):
@@ -98,7 +147,7 @@ class Brands(models.Model):
         return self.brand_name
     
 
-class cretor_invitation_card(models.Model):
+class cretor_proposition(models.Model):
     text_title_1 = models.TextField(blank=True, null=True)  # Creators
     text_title_2 = models.TextField(blank=True, null=True)  # Invitation
 
@@ -106,82 +155,98 @@ class cretor_invitation_card(models.Model):
         return "Creator Invitation Card Section"
     
 
+
+class creator_proposition_modal(models.Model):
+    text_title_1 = models.TextField(blank=True, null=True)  # Creators
+    text_title_2 = models.TextField(blank=True, null=True)  # Invitation
+
+    card_title_1 = models.TextField(blank=True, null=True)  # Name of plan
+    promise_1 = models.TextField(blank=True, null=True)  # Promise 1
+    promise_2 = models.TextField(blank=True, null=True)  # Promise 2
+
+    card_title_2 = models.TextField(blank=True, null=True)  # Name of plan
+    promise_3 = models.TextField(blank=True, null=True)  # Promise 3
+
+    card_title_3 = models.TextField(blank=True, null=True)  # Name of plan
+    promise_4 = models.TextField(blank=True, null=True)  # Promise 4
+
+    card_title_4 = models.TextField(blank=True, null=True)  # Name of plan
+    promise_5 = models.TextField(blank=True, null=True)  # Promise 5
+    promise_6 = models.TextField(blank=True, null=True)  # Promise 6
+
+    notification_text = models.TextField(blank=True, null=True)  # Notification text
+
+    def __str__(self):
+        return "Creator Proposition Modal Section"
+    
+    
+
 class Privacy_policy(models.Model):
-    text_title_1 = models.TextField(blank=True, null=True)  # Privacy
-    text = models.TextField(blank=True, null=True)  # Policy
+    text_title_1 = models.TextField(blank=True, null=True)  
+    text_1 = models.TextField(blank=True, null=True) 
+
+    text_title_2 = models.TextField(blank=True, null=True)
+    text_2 = models.TextField(blank=True, null=True)
+
+    text_title_3 = models.TextField(blank=True, null=True)
+    text_3 = models.TextField(blank=True, null=True)
+
+    text_title_4 = models.TextField(blank=True, null=True)
+    text_4 = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return "Privacy Policy Section"   
 
 class Terms_and_conditions(models.Model):  
-    text_title_1 = models.TextField(blank=True, null=True)  # Terms
-    text = models.TextField(blank=True, null=True)  # And
+    text_title_1 = models.TextField(blank=True, null=True)  
+    text_1 = models.TextField(blank=True, null=True) 
+
+    text_title_2 = models.TextField(blank=True, null=True)
+    text_2 = models.TextField(blank=True, null=True)
+
+    text_title_3 = models.TextField(blank=True, null=True)
+    text_3 = models.TextField(blank=True, null=True)
+
+    text_title_4 = models.TextField(blank=True, null=True)
+    text_4 = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return "Terms and Conditions Section"   
     
 
+class refund_policy(models.Model):
+    text_title_1 = models.TextField(blank=True, null=True)  
+    text_1 = models.TextField(blank=True, null=True) 
 
-# End of Index.html dynamic models here ----------------------------------------------------------------------
-# 
-#     
+    text_title_2 = models.TextField(blank=True, null=True)
+    text_2 = models.TextField(blank=True, null=True)
 
+    text_title_3 = models.TextField(blank=True, null=True)
+    text_3 = models.TextField(blank=True, null=True)
 
-# Start of About.html dynamic models here ----------------------------------------------------------------------
-
-class About(models.Model):
-    title = models.TextField(blank=True, null=True)  # About Jadoo
-    aboutus_text = models.TextField(blank=True, null=True)  # Welcome to Jadoo
-
-    founder_text = models.TextField(blank=True, null=True)  # Founded by a team of passionate
-    founder_image = models.ImageField(upload_to='about/founder/', blank=True, null=True)  # Image field for founder image
-    founder_name = models.TextField(blank=True, null=True)  # Founder name
-    founder_position = models.TextField(blank=True, null=True)  # Founder position (e.g., CEO, Co-Founder)
-
-    values_title = models.TextField(blank=True, null=True)  # Our Values
-    values_text = models.TextField(blank=True, null=True)  # Our values are the foundation of our company culture
-
-    mission_title_1 = models.TextField(blank=True, null=True)  # Our Mission
-    mission_1_text = models.TextField(blank=True, null=True)  # Our mission is to empower brands
-
-    mission_title_2 = models.TextField(blank=True, null=True)  # Our Mission
-    mission_2_text = models.TextField(blank=True, null=True)  # Our mission is to empower brands
+    text_title_4 = models.TextField(blank=True, null=True)
+    text_4 = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return "About Section"
+        return "Refund Policy Section"      
 
 
-# End of About.html dynamic models here ----------------------------------------------------------------------
-#
-#
-
-# Start of Contact Section dynamic models here ----------------------------------------------------------------------
-
-class Contact(models.Model):
-    visitor_choices = (
-        ('Influencer', 'Influencer'),
-        ('brand', 'Brand'),
-    )
-
-    visitor_type = models.CharField(max_length=50, choices=visitor_choices, blank=True, null=True)  # Influencer or Brand
-    contact_email = models.TextField(blank=True, null=True)  # We will send you a proposal to your email
+class Contact_us(models.Model):
+    whatsapp_number = models.CharField(max_length=20, blank=True, null=True)  # WhatsApp number
+    email = models.EmailField(blank=True, null=True)  # Email address
 
     def __str__(self):
-        return "Contact Section"
+        return "Contact Us Section"
     
 
-class Launching_soon(models.Model):
-    title_1 = models.TextField(blank=True, null=True)  # Launching
-    text_title_2 = models.TextField(blank=True, null=True)  # Soon
-    launch_date = models.TextField(blank=True, null=True)  # Launch date (e.g., 1st Jan 2024
+class Blog(models.Model):
+    title_1 = models.TextField(blank=True, null=True)  # Blog
+    summary_text = models.TextField(blank=True, null=True)  # Jadoo
+    full_text = models.TextField(blank=True, null=True)  # Matters
+
+    created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)  # Date and time of creation
 
     def __str__(self):
-        return "Launching Soon Section"    
+        return "Blog Section"    
     
-
-class contact_phone(models.Model):
-    phone_number = models.TextField(blank=True, null=True)  # Contact phone number
-
-
-    def __str__(self):
-        return "Contact Phone Section"    
+    
