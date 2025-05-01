@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -8,7 +9,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-(2&760$$=6z45kp9$^l=k7$78(c!#ov^%6!g8xf3)fto+e@&yp'
+
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -132,8 +134,8 @@ MEDIA_ROOT = BASE_DIR / "media"
 # AWS configuration
 
 
-AWS_ACCESS_KEY_ID = 'AKIA45Y2RXIZJTBEBVLO' 
-AWS_SECRET_ACCESS_KEY = '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' 
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
 
 
 
