@@ -13,4 +13,4 @@ ExecStart=/home/ubuntu/april/venv/bin/gunicorn \
           --bind unix:/run/gunicorn.sock \
           jadoo.wsgi:application
 [Install]
-WantedBy=multi-user.target
+WantedBy=multi-user.target 
