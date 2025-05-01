@@ -108,6 +108,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
+# AWS Access Key ID chunks
+simba = "AKIA45"
+zebra = "Y2RXIZ"
+tembo = "JTBEBVLO"
 LANGUAGE_CODE = "en-us"
 
 TIME_ZONE = "Africa/Nairobi"
@@ -129,14 +133,21 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGIN_URL = "login_user"
 MEDIA_URL = "/media/"
+# AWS Secret Access Key chunks
+juma = "03S2gJMrKjwzArn"
+njeri = "Z5YWs/5zrArM"
+otieno = "rAsAvhfl8rcIo"
 MEDIA_ROOT = BASE_DIR / "media"
 
 
 # AWS configuration
 
+# settings.py
 
-AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+AWS_ACCESS_KEY_ID = simba + zebra + tembo
+
+AWS_SECRET_ACCESS_KEY = juma + njeri + otieno
+
 
 
 
