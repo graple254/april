@@ -27,8 +27,8 @@
     <meta property="og:description" content="{{ seo.dc_description }}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ request.build_absolute_uri }}" />
-    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'index/assets/images/Jadoo.png' %}" />
-    <meta property="og:image:secure_url" content="{{ request.scheme }}://{{ request.get_host }}{% static 'index/assets/images/Jadoo.png' %}"/>
+    <meta property="og:image" content="{% static 'index/assets/images/Jadoo.png' %}" />
+    <meta property="og:image:secure_url" content="{% static 'index/assets/images/Jadoo.png' %}"/>
     <meta property="og:image:alt" content="Jadoo – Creator-Powered Ads That Work" />
     <meta property="og:site_name" content="Jadoo" />
     <meta property="og:locale" content="en_US" />
@@ -39,7 +39,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="twitter:title" content="{{ seo.dc_title }}" />
     <meta property="twitter:description" content="{{ seo.dc_description }}" />
-    <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'index/assets/images/Jadoo.png' %}" />
+    <meta name="twitter:image" content="{% static 'index/assets/images/Jadoo.png' %}" />
     <meta name="twitter:site" content="@jadoo_ads" />
     <meta name="twitter:creator" content="@jadoo_ads" />
     <meta name="twitter:label1" content="Est. reading time" />
