@@ -1,27 +1,51 @@
 {% load static %}
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Jadoo | Launching Soon</title>
-    <meta name="description" content="">
+    <title>Jadoo | Clearance Sales Platform for Flash Deals & Inventory Liquidation.</title>
+    <meta name="description" content="Jadoo helps businesses sell unsold stock fast and gives shoppers access to huge discounts on limited-time deals.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="author" content="SoonLaunch">
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/Jadoo_Fav.png' %}">
-    <!-- Place favicon.ico in the root directory -->
+    <!-- Author -->
+    <meta name="author" content="Jadoo">
 
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/Jadoo_Fav.png' %}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Jadoo | Clearance Sales Platform for Flash Deals & Inventory Liquidation">
+    <meta property="og:description" content="Jadoo helps businesses sell unsold stock fast and gives shoppers access to huge discounts on limited-time deals.">
+    <meta property="og:image" content="{% static 'assets/img/Jadoo.png' %}">
+    <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}/">
+    <meta property="og:site_name" content="Jadoo">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Jadoo | Clearance Sales Platform for Flash Deals & Inventory Liquidation">
+    <meta name="twitter:description" content="Jadoo helps businesses sell unsold stock fast and gives shoppers access to huge discounts on limited-time deals.">
+    <meta name="twitter:image" content="{% static 'assets/img/Jadoo.png' %}">
+
+    <!-- SEO Keywords (Optional) -->
+    <meta name="keywords" content="clearance sales, flash deals, discounted stock, time-limited offers, jadoo ecommerce, jadoo platform, jadoo sales, jadoo deals, jadoo clearance, jadoo shopping, jadoo inventory liquidation, jadoo discounts, jadoo offers, jadoo promotions, best clearance sale platform for businesses">
+    <meta name="robots" content="index, follow">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <!-- ========================= CSS here ========================= -->
-    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-4.5.0.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/lineicons.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
 </head>
 
+
 <body>
 
+    <h1 class="d-none" hidden>clearance sales, flash deals, discounted stock, time-limited offers, jadoo ecommerce, jadoo platform, jadoo sales, jadoo deals, jadoo clearance, jadoo shopping, jadoo inventory liquidation, jadoo discounts, jadoo offers, jadoo promotions, best clearance sale platform for businesses, best clearance sale platform for businesses in nairobi</h1>
     <!-- ========================= main start ========================= -->
     <main class="main-06">
         <!-- header start  -->
@@ -29,11 +53,11 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-4">
-                        <a href="https://jadoo.world" class="logo"> <img src="{% static 'assets/img/planet.png' %}" alt=""></a>
+                        <a href="https://jadoo.world" class="logo"> <img src="{% static 'assets/img/planet.png' %}" alt="clearance sales, flash deals, discounted stock, time-limited offers, jadoo ecommerce, jadoo platform, jadoo sales, jadoo deals, jadoo clearance, jadoo shopping, jadoo inventory liquidation, jadoo discounts, jadoo offers, jadoo promotions, best clearance sale platform for businesses"></a>
                     </div>
-                    <div class="col-md-8">
-                        <div class="header-right text-right">
-                            <a href="https://jadoo.world">Hi👋 hello!. Welcome.</a>
+                    <div class="col-md-8 d-flex justify-content-end">
+                        <div class="header-right">
+                            <a href="https://jadoo.world" style="text-decoration: none;">Hi👋 hello!. Welcome.</a>
                         </div>
                     </div>
                 </div>
@@ -49,18 +73,21 @@
                         <div class="col-xl-12">
                             <!-- heading start  -->
                             <div class="heading">
-                                <h1 class="text-white wow fadeInUp" data-wow-delay=".2s">We Are <br> Coming Soon</h1>
+                                <h1 class="text-white wow fadeInUp" data-wow-delay=".2s">{{ hero_info.title }}</h1>
                             </div>
                             <!-- heading end  -->
                         </div>
                         <div class="col-xl-7 col-lg-7">
                             <!-- countdown start  -->
-                            <div class="wow fadeInRight" data-wow-delay=".4s" data-countdown="2025/10/01"></div>
+                            <div class="wow fadeInRight" data-wow-delay=".4s" data-countdown="{{ hero_info.launch_date|date:'Y/m/d' }}"></div>
                             <!-- countdown end  -->
                         </div>
                         <div class="col-xl-5 col-lg-5">
                             <!-- desc strat  -->
-                            <p class="wow fadeInLeft" data-wow-delay=".4s">We're strong believers that the best solutions come from gathering new insights and pushing conventional boundaries.</p>
+                            <p class="wow fadeInLeft" data-wow-delay=".4s">
+                                {{ hero_info.subtitle }}
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#learnMoreModal">Learn More</a>
+                            </p>
                             <!-- desc end  -->
                         </div>
                     </div>
@@ -68,19 +95,210 @@
             </div>
             <!-- hero-area end  -->
         </div>
+
+<!-- Airbnb-inspired Modal Redesign - Black and White Theme -->
+<div class="modal fade" id="learnMoreModal" tabindex="-1" aria-labelledby="learnMoreModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+        <div class="modal-content rounded-4 border-0 shadow-lg bg-dark text-white">
+            <!-- Modal Header - Bold and minimal -->
+            <div class="modal-header border-0 bg-dark text-white py-3 px-4">
+                <h2 class="modal-title fs-4 fw-bold" id="learnMoreModalLabel">
+                    <i class="bi bi-lightning-charge-fill text-white me-2"></i>
+                    Jadoo at a Glance
+                </h2>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Modal Body - Unified and clean platform details -->
+            <div class="modal-body p-4">
+                {% if platform_details %}
+                <!-- Platform Details Section -->
+                {% for platform in platform_details %}
+                <div class="p-3 bg-black bg-opacity-25 rounded-3 mb-3">
+                    <div class="d-flex align-items-center mb-3">
+                        <span class="badge bg-white text-dark fs-6 fw-semibold me-3 px-3 py-2 rounded-pill">
+                            0{{ forloop.counter }}
+                        </span>
+                        <h3 class="fs-5 fw-bold mb-0 text-white">{{ platform.title }}</h3>
+                    </div>
+                    <p class="text-secondary mb-4">{{ platform.subtitle }}</p>
+                    {% with platform.detail_set.all as details %}
+                    {% if details %}
+                    <ul class="list-unstyled">
+                        {% for detail in details %}
+                        <li class="mb-3 pb-3 border-bottom border-secondary">
+                            <div class="d-flex">
+                                <div class="me-3 mt-1">
+                                    <i class="bi bi-check-circle-fill text-white"></i>
+                                </div>
+                                <div>
+                                    <h5 class="fs-6 fw-semibold mb-1 text-white">{{ detail.title }}</h5>
+                                    <p class="small text-secondary mb-0">{{ detail.subtitle }}</p>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    {% endwith %}
+                </div>
+                {% endfor %}
+                {% else %}
+                <!-- Empty State -->
+                <div class="text-center py-5">
+                    <div class="bg-white rounded-circle d-inline-flex p-4 mb-3">
+                        <i class="bi bi-box-seam fs-2 text-dark"></i>
+                    </div>
+                    <h5 class="fw-bold mb-2 text-white">No Details Available</h5>
+                    <p class="text-secondary">More info coming soon!</p>
+                </div>
+                {% endif %}
+
+                <!-- Contact and Social Media Section -->
+                <div class="mt-4 pt-4 border-top border-secondary">
+                    <div class="row">
+                        <!-- Contact Information -->
+                        <div class="col-md-6 mb-4 mb-md-0">
+                            <h5 class="fs-6 text-uppercase text-secondary fw-bold mb-3">
+                                <i class="bi bi-headset me-2"></i>Contact Us
+                            </h5>
+                            <div class="row g-3">
+                                {% if contact_info.whatsapp_number %}
+                                <div class="col-12">
+                                    <div class="card bg-white text-dark border-0 shadow-sm">
+                                        <div class="card-body d-flex align-items-center p-3">
+                                            <span class="bg-dark bg-opacity-25 rounded-circle p-3 me-3">
+                                                <i class="bi bi-whatsapp text-dark"></i>
+                                            </span>
+                                            <a href="https://wa.me/{{ contact_info.whatsapp_number }}" 
+                                               class="text-decoration-none text-dark fw-semibold stretched-link"
+                                               target="_blank">
+                                                WhatsApp: {{ contact_info.whatsapp_number }}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% if contact_info.email %}
+                                <div class="col-12">
+                                    <div class="card bg-white text-dark border-0 shadow-sm">
+                                        <div class="card-body d-flex align-items-center p-3">
+                                            <span class="bg-dark bg-opacity-25 rounded-circle p-3 me-3">
+                                                <i class="bi bi-envelope text-dark"></i>
+                                            </span>
+                                            <a href="mailto:{{ contact_info.email }}" 
+                                               class="text-decoration-none text-dark fw-semibold stretched-link">
+                                                Email: {{ contact_info.email }}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <!-- Redesigned Social Media Links: Compact, Grid Layout, Modern Look -->
+                        <div class="col-md-6">
+                            <h5 class="fs-6 text-uppercase text-secondary fw-bold mb-3">
+                                <i class="bi bi-people me-2"></i>Follow Us
+                            </h5>
+                            {% if social_media_info %}
+                            <div class="row row-cols-3 g-3">
+                                {% for social in social_media_info %}
+                                    {% if social.twitter %}
+                                    <div class="col text-center">
+                                        <a href="{{ social.twitter }}" target="_blank" class="d-block text-decoration-none">
+                                            <span class="bg-white bg-opacity-10 border border-white border-2 rounded-4 p-3 d-inline-flex align-items-center justify-content-center mb-2" style="width:56px; height:56px;">
+                                                <i class="bi bi-twitter fs-3 text-white"></i>
+                                            </span>
+                                            <div class="small text-secondary">Twitter</div>
+                                        </a>
+                                    </div>
+                                    {% endif %}
+                                    {% if social.facebook %}
+                                    <div class="col text-center">
+                                        <a href="{{ social.facebook }}" target="_blank" class="d-block text-decoration-none">
+                                            <span class="bg-white bg-opacity-10 border border-white border-2 rounded-4 p-3 d-inline-flex align-items-center justify-content-center mb-2" style="width:56px; height:56px;">
+                                                <i class="bi bi-facebook fs-3 text-white"></i>
+                                            </span>
+                                            <div class="small text-secondary">Facebook</div>
+                                        </a>
+                                    </div>
+                                    {% endif %}
+                                    {% if social.instagram %}
+                                    <div class="col text-center">
+                                        <a href="{{ social.instagram }}" target="_blank" class="d-block text-decoration-none">
+                                            <span class="bg-white bg-opacity-10 border border-white border-2 rounded-4 p-3 d-inline-flex align-items-center justify-content-center mb-2" style="width:56px; height:56px;">
+                                                <i class="bi bi-instagram fs-3 text-white"></i>
+                                            </span>
+                                            <div class="small text-secondary">Instagram</div>
+                                        </a>
+                                    </div>
+                                    {% endif %}
+                                    {% if social.youtube %}
+                                    <div class="col text-center">
+                                        <a href="{{ social.youtube }}" target="_blank" class="d-block text-decoration-none">
+                                            <span class="bg-white bg-opacity-10 border border-white border-2 rounded-4 p-3 d-inline-flex align-items-center justify-content-center mb-2" style="width:56px; height:56px;">
+                                                <i class="bi bi-youtube fs-3 text-white"></i>
+                                            </span>
+                                            <div class="small text-secondary">YouTube</div>
+                                        </a>
+                                    </div>
+                                    {% endif %}
+                                    {% if social.tiktok %}
+                                    <div class="col text-center">
+                                        <a href="{{ social.tiktok }}" target="_blank" class="d-block text-decoration-none">
+                                            <span class="bg-white bg-opacity-10 border border-white border-2 rounded-4 p-3 d-inline-flex align-items-center justify-content-center mb-2" style="width:56px; height:56px;">
+                                                <i class="bi bi-tiktok fs-3 text-white"></i>
+                                            </span>
+                                            <div class="small text-secondary">TikTok</div>
+                                        </a>
+                                    </div>
+                                    {% endif %}
+                                    {% if social.linkedin %}
+                                    <div class="col text-center">
+                                        <a href="{{ social.linkedin }}" target="_blank" class="d-block text-decoration-none">
+                                            <span class="bg-white bg-opacity-10 border border-white border-2 rounded-4 p-3 d-inline-flex align-items-center justify-content-center mb-2" style="width:56px; height:56px;">
+                                                <i class="bi bi-linkedin fs-3 text-white"></i>
+                                            </span>
+                                            <div class="small text-secondary">LinkedIn</div>
+                                        </a>
+                                    </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            <div class="bg-black bg-opacity-25 rounded-3 p-3 text-center">
+                                <p class="text-secondary mb-0">We're not on social media yet, but stay tuned for updates!</p>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer - Sleek and simple -->
+            <div class="modal-footer bg-dark border-0 py-3 px-4">
+                <button type="button" class="btn btn-outline-light rounded-pill px-4 py-2" data-bs-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
         <!-- ========================= main-wrapper end ========================= -->
         <!-- footer start  -->
         <div class="footer">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-7">
-                        <div class="copyright wow fadeInLeft" data-wow-delay=".2s">
-                            <p>Product of <a href="https://jadoo.world" rel="nofollow">Graple Technologies Kenya</a></p>
-                        </div>
-                    </div>
-                    <div class="col-md-5">
+                    <div class="col-md-8 d-flex justify-content-center align-items-center">
                         <div class="credit wow fadeInRight" data-wow-delay=".4s">
-                            <p>Designed and Developed by <a rel="nofollow" href="https://jadoo.world">Graple Technologies</a></p>
+                            <p>
+                                Copyright &copy; <span id="currentYear"></span>
+                                <a rel="nofollow" href="https://jadoo.world">Jadoo</a>. All Rights Reserved.
+                            </p>
+                            <script>
+                                document.getElementById('currentYear').textContent = new Date().getFullYear();
+                            </script>
                         </div>
                     </div>
                 </div>
@@ -94,11 +312,10 @@
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="{% static 'assets/js/vendor/modernizr-3.5.0.min.js' %}"></script>
     <script src="{% static 'assets/js/vendor/jquery-3.5.1.min.js' %}"></script>
-    <script src="{% static 'assets/js/popper.min.js' %}"></script>
-    <script src="{% static 'assets/js/bootstrap-4.5.0.min.js' %}"></script>
     <script src="{% static 'assets/js/countdown.js' %}"></script>
     <script src="{% static 'assets/js/wow.min.js' %}"></script>
     <script src="{% static 'assets/js/main.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
     <script>
         (function() {
             function c() {
