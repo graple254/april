@@ -1,0 +1,68 @@
+// countdown css
+
+.countdown {
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+    .single-count-content {
+        position: relative;
+        padding: 0 40px;
+        text-align: center;
+
+        @media #{$lg} {
+            padding: 0 30px;
+        }
+        @media #{$xs} {
+            padding: 0 10px;
+        }
+        @media #{$sm} {
+            padding: 0 20px;
+        }
+
+        &::after {
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-size: 50px;
+
+            @media #{$xs} {
+                top: -10px;
+            }
+            @media #{$sm} {
+                top: -5px;
+            }
+        }
+
+        &:first-child {
+            padding-left: 0px;
+        }
+
+        &:last-child {
+            padding-right: 0px;
+
+            &::after {
+                display: none;
+            }
+        }
+
+        .count {
+            font-size: 50px;
+
+            @media #{$xs} {
+                font-size: 35px;
+            }
+
+            @media #{$sm} {
+                font-size: 45px;
+            }
+        }
+
+        .text {
+            margin-bottom: 0;
+
+            @media #{$xs} {
+                font-size: 15px;
+            }
+        }
+    }
+}

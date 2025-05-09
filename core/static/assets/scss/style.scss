@@ -1,0 +1,297 @@
+// demo-06 css
+
+@import 'partials';
+
+main {
+
+    &.main-06 {
+        background: $color-25;
+        overflow: hidden;
+    }
+
+    // header 
+    .header {
+
+        &.header-06 {
+            position: unset;
+            padding-top: 100px;
+            padding-bottom: 120px;
+
+            @media #{$xs} {
+                padding-top: 50px;
+                padding-bottom: 50px;
+            }
+
+            // header-right 
+            .header-right {
+
+                @media #{$xs} {
+                    display: none;
+                }
+
+                a {
+                    color: $white;
+                    font-size: 20px;
+                    font-family: $font-8;
+                }
+            }
+        }
+    }
+
+    .main-wrapper {
+
+        &.demo-06 {
+            flex-direction: column;
+            height: auto;
+
+            // hero-area 
+            .hero-area {
+                margin-bottom: 100px;
+
+                h1 {
+                    font-size: 100px;
+                    font-weight: 700;
+                    color: $white;
+                    font-family: $font-2;
+
+                    @media #{$lg} {
+                        font-size: 80px;
+                    }
+                    @media #{$xs} {
+                        font-size: 40px;
+                    }
+                    @media #{$sm} {
+                        font-size: 50px;
+                    }
+                }
+
+                p {
+                    font-family: $font-8;
+                    font-size: 20px;
+                    color: rgba($white, .7);
+                    line-height: 40px;
+                }
+
+                // countdown 
+                .countdown {
+
+                    .single-count-content {
+                        display: flex;
+                        flex-direction: column-reverse;
+
+                        &::after {
+                            content: ':';
+                            font-size: 54px;
+                            color: $white;
+                            top: 35px;
+
+                            @media #{$lg} {
+                                top: 30px;
+                            }
+                            @media #{$xs} {
+                                top: 30px;
+                                font-size: 45px;
+                            }
+                        }
+
+                        .count {
+                            font-family: $font-2;
+                            color: $white;
+                            font-size: 60px;
+                            font-weight: 700;
+
+                            @media #{$lg} {
+                                font-size: 50px;
+                            }
+                            @media #{$xs} {
+                                font-size: 40px;
+                            }
+                        }
+
+                        .text {
+                            font-family: $font-8;
+                            font-size: 17px;
+                            color: rgba($white, .5);
+                        }
+                    }
+                }
+            }
+
+            // team-area 
+            .team-area {
+                margin-bottom: 100px;
+
+                @media #{$xs} {
+                    margin-bottom: 30px;
+                }
+
+                // section-title 
+                .section-title {
+
+                    h1 {
+                        font-size: 26px;
+                        font-weight: 600;
+                        font-family: $font-2;
+                        color: $white;
+                        padding-bottom: 7px;
+                        margin-bottom: 40px;
+                        position: relative;
+
+                        @media #{$xs} {
+                            font-size: 20px;
+                        }
+                        @media #{$sm} {
+                            font-size: 22px;
+                        }
+
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            width: 30px;
+                            height: 1px;
+                            background: $white;
+                            bottom: 0;
+                            left: 0;
+                        }
+                    }
+
+                    h2 {
+                        font-family: $font-2;
+                        font-size: 45px;
+                        line-height: 55px;
+                        font-weight: 45px;
+                        color: $white;
+                        margin-bottom: 50px;
+
+                        @media #{$xs} {
+                            font-size: 28px;
+                            line-height: 40px;
+                        }
+                        @media #{$sm} {
+                            font-size: 32px;
+                            line-height: 42px;
+                        }
+                    }
+                }
+
+                // team-wrapper 
+                .team-wrapper {
+                    display: flex;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+                    margin-left: -25px;
+                    margin-right: -25px;
+
+                    // team-item 
+                    .team-item {
+                        width: calc(33.33% - 50px);
+                        margin: 0px 25px 50px;
+
+                        @media #{$lg} {
+                            width: calc(33.33% - 30px);
+                            margin: 0px 15px 50px;
+                        }
+                        @media #{$md} {
+                            width: calc(50% - 30px);
+                            margin: 0px 15px 50px;
+                        }
+                        @media #{$xs} {
+                            width: calc(100% - 50px);
+                            margin: 0px 25px 50px;
+                        }
+
+                        // team-img 
+                        .team-img {
+                            position: relative;
+                            margin-bottom: 20px;
+
+                            img {
+                                width: 100%;
+                            }
+
+                            // social-links 
+                            .social-links {
+                                position: absolute;
+                                width: 185px;
+                                height: 0px;
+                                background: $white;
+                                border-top-right-radius: 57px;
+                                left: 0;
+                                bottom: 0;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                opacity: 0;
+                                visibility: hidden;
+                                @include transition(.3s);
+
+                                li {
+                                    display: inline-block;
+                                    margin: 0 8px;
+
+                                    a {
+                                        font-size: 18px;
+                                        color: $color-25;
+
+                                        &:hover {
+                                            color: #D5081A;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        &:hover {
+                            .team-img {
+                                .social-links {
+                                    height: 57px;
+                                    opacity: 1;
+                                    visibility: visible;
+                                }
+                            }
+                        }
+
+                        // team-info 
+                        .team-info {
+
+                            h4 {
+                                font-size: 24px;
+                                font-weight: 700;
+                                color: $white;
+                                font-family: $font-2;
+                            }
+
+                            p {
+                                font-family: $font-8;
+                                font-size: 14px;
+                                color: rgba($white, .7);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // footer 
+    .footer {
+        width: 100%;
+        margin-bottom: 50px;
+
+        p {
+            font-family: $font-8;
+            color: rgba($white, .7);
+
+            @media #{$xs} {
+                text-align: center;
+            }
+        }
+
+        .credit {
+            text-align: right;
+
+            @media #{$xs} {
+                text-align: center;
+            }
+        }
+    }
+}
