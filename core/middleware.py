@@ -12,8 +12,8 @@ class VisitorTrackingMiddleware(MiddlewareMixin):
         path = request.path
         method = request.method
 
-        # Cache key to prevent duplicate logs for same IP + path in 30 minutes
-        cache_key = f"visitor-{ip_address}-{path}"
+        # NEW: Only cache by IP address to avoid logging same IP repeatedly
+        cache_key = f"visitor-ip-{ip_address}"
         if cache.get(cache_key):
             return
 
@@ -29,7 +29,7 @@ class VisitorTrackingMiddleware(MiddlewareMixin):
             visit_date=now()
         )
 
-        # Prevent duplicate tracking for 30 mins (customize as needed)
+        # Prevent duplicate tracking by IP for 30 minutes
         cache.set(cache_key, True, timeout=1800)
 
     def get_client_ip(self, request):
@@ -52,7 +52,8 @@ class VisitorTrackingMiddleware(MiddlewareMixin):
                 return 'Unknown'
 
             location = f"{data.get('city')}, {data.get('country')}"
-            cache.set(cache_key, location, timeout=86400)  # 24 hours
+            cache.set(cache_key, location, timeout=86400)  # Cache for 24 hrs
             return location
         except requests.RequestException:
             return 'Unknown'
+
