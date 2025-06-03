@@ -115,6 +115,10 @@ def send_verification_code_view(request):
 
 
 
+# your_sudoku_app/views.py
+
+# ... (other imports) ...
+# from .auth import generate_verification_code, send_verification_email, send_successful_registration_email, register_user # Ensure this is correct
 
 def verify_email_code_view(request):
     """Verifies the email code entered by the user against the stored code via AJAX POST."""
@@ -122,28 +126,64 @@ def verify_email_code_view(request):
         return JsonResponse({"status": False, "error": "Invalid request method."}, status=405)
 
     code_entered = request.POST.get("code")
+    
+    # Get current verification attempt details from session
     stored_code = request.session.get("email_verification_code")
     timestamp = request.session.get("email_verification_timestamp") 
-    session_email_for_verification = request.session.get("email_verification_address")
+    current_email_being_verified = request.session.get("email_verification_address") # Email for *this specific code*
     
+    # For debugging, print what's in session at the start of this view
+    # print(f"[VerifyView] Session at start: code={stored_code}, ts={timestamp}, addr={current_email_being_verified}, verified_email={request.session.get('verified_email')}")
+
+
     if not code_entered:
         return JsonResponse({"status": False, "error": "Please enter a verification code."}, status=400)
 
-    if not stored_code or not timestamp or not session_email_for_verification:
-        return JsonResponse({"status": False, "error": "Verification process not initiated or session expired. Please request a new code."}, status=400)
+    # This checks if a verification process (sending a code) was actually initiated for current_email_being_verified
+    if not stored_code or not timestamp or not current_email_being_verified:
+        # If these are missing, it means either no code was sent, or it expired and was cleared,
+        # or a previous verification for a *different* email cleared them.
+        # We should not proceed with verification.
+        # Also, clear any potentially stale "verified_email" if the current attempt is failing this early.
+        # This prevents a jump to signup if a previous unrelated email was verified.
+        # However, be careful: if a user legitimately verified email_A, then tries to verify email_B but fails
+        # at this stage, should email_A's "verified_email" status be revoked?
+        # For now, let's assume if they are at "enter code" step, they are trying to verify current_email_being_verified.
+        # If that process is broken, then the "verified_email" from a *previous* successful flow for a *different* email
+        # shouldn't allow them to skip to signup with the *current failing* email.
+        
+        # Let's clear all verification-specific keys to force a restart of the process
+        for key in ["email_verification_code", "email_verification_address", "email_verification_timestamp", "verified_email"]:
+            request.session.pop(key, None)
+        return JsonResponse({"status": False, "error": "Verification process invalid or expired. Please request a new code."}, status=400)
 
-    if time.time() - timestamp > 600: 
+    if time.time() - timestamp > 600: # 10 minutes expiry
         for key in ["email_verification_code", "email_verification_address", "email_verification_timestamp"]:
             request.session.pop(key, None)
+        # Also clear verified_email if the code for *it* expired.
+        if request.session.get("verified_email") == current_email_being_verified:
+            request.session.pop("verified_email", None)
         return JsonResponse({"status": False, "error": "Verification code has expired. Please request a new one."}, status=400)
 
     if stored_code == code_entered:
-        request.session["verified_email"] = session_email_for_verification 
+        # Code is correct for current_email_being_verified
+        request.session["verified_email"] = current_email_being_verified # This is the email that is now confirmed
+        
+        # Clear the session keys related to *this specific verification attempt*
         request.session.pop("email_verification_code", None)
         request.session.pop("email_verification_timestamp", None)
+        request.session.pop("email_verification_address", None) # Clear this too, as this attempt is done.
+                                                              # "verified_email" now holds the successfully verified one.
+        
+        # print(f"[VerifyView] Code OK. Session after success: verified_email={request.session.get('verified_email')}")
         return JsonResponse({"status": True, "message": "Email verified successfully!"})
     else:
+        # Incorrect code. Don't change "verified_email" if it was set from a previous, different, successful verification.
+        # Just report error for the current attempt.
+        # print(f"[VerifyView] Code BAD. Session state unchanged for verified_email.")
         return JsonResponse({"status": False, "error": "Invalid verification code."}, status=400)
+
+# ... rest of your views.py ...
 
 
 

@@ -383,7 +383,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        const nextUrl = "{{ next|escapejs }}" || "{% url 'home' %}";
+        const nextUrl = "{{ next|escapejs }}" || "{% url 'home' %}"; // Assumes 'home' is a globally defined URL name
         let verifiedEmailForSignup = "";
         let lastShownModalType = 'loading'; // To help hideLoadingModal decide on delay
 
@@ -408,7 +408,7 @@
             const csrftoken = getCookie('csrftoken') || $('input[name="csrfmiddlewaretoken"]').first().val();
             
             if (!csrftoken) {
-                console.warn("CSRF Token not found. AJAX POST requests might fail.");
+                console.warn("CSRF Token not found. AJAX POST requests might fail. Ensure {% csrf_token %} is in your forms.");
             }
 
             $.ajaxSetup({
@@ -417,11 +417,13 @@
                         // Only set header if csrftoken was found
                         if (csrftoken) {
                             xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                        } else {
+                            console.error("CSRF token is missing. Request to", settings.url, "might be rejected.");
                         }
                     }
                 }
             });
-             showAuthInitial();
+            showAuthInitial();
         });
 
         function hideAllSections() {
@@ -435,11 +437,13 @@
         function showCodeVerificationForm(emailToVerify) {
             hideAllSections();
             if (emailToVerify) {
-                 $('#displayVerifiedEmail').text(emailToVerify);
-                 $('#hiddenEmailForCodeVerification').val(emailToVerify);
-            } else if (verifiedEmailForSignup) {
-                 $('#displayVerifiedEmail').text(verifiedEmailForSignup);
-                 $('#hiddenEmailForCodeVerification').val(verifiedEmailForSignup);
+                $('#displayVerifiedEmail').text(emailToVerify);
+                $('#hiddenEmailForCodeVerification').val(emailToVerify);
+            } else if (verifiedEmailForSignup) { // Fallback if emailToVerify wasn't passed but we have it
+                $('#displayVerifiedEmail').text(verifiedEmailForSignup);
+                $('#hiddenEmailForCodeVerification').val(verifiedEmailForSignup);
+            } else {
+                $('#displayVerifiedEmail').text("your email"); // Generic if no email known
             }
             $('#codeVerificationFormDiv').fadeIn(300);
         }
@@ -461,7 +465,8 @@
 
         let loadingModalInstance;
         function showLoadingModal(message, type = 'loading') {
-            lastShownModalType = type; // Store the type of modal being shown
+            // console.log("showLoadingModal called with:", message, "type:", type); // DEBUG
+            lastShownModalType = type; 
             const modalEl = document.getElementById('loadingModal');
             const iconContainer = document.getElementById('loadingModalIconContainer');
             const messageEl = document.getElementById('loadingMessage');
@@ -470,34 +475,46 @@
 
             if (type === 'success') {
                 iconContainer.innerHTML = '<i class="bi bi-check-circle-fill"></i>';
-            } else {
+            } else { 
                 iconContainer.innerHTML = '<div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>';
             }
             
             if (!loadingModalInstance) {
                 loadingModalInstance = new bootstrap.Modal(modalEl, { backdrop: 'static', keyboard: false });
             }
-            loadingModalInstance.show();
+            try {
+                loadingModalInstance.show();
+            } catch (e) {
+                console.error("Error showing modal:", e);
+            }
         }
         
-        function hideLoadingModal() { // General hide function
+        function hideLoadingModal() { 
+            // console.log("hideLoadingModal called, last type:", lastShownModalType); // DEBUG
             if (loadingModalInstance) {
-                // Use lastShownModalType to decide on delay, or a fixed small delay
-                const delay = lastShownModalType === 'success' ? 500 : 50; // Shorter delay for loading/error
+                const delay = lastShownModalType === 'success' ? 500 : 50; 
                 setTimeout(() => {
                     if (loadingModalInstance) {
-                         loadingModalInstance.hide();
+                        try {
+                            loadingModalInstance.hide();
+                        } catch (e) {
+                            console.error("Error hiding modal in timeout:", e);
+                        }
                     }
                 }, delay);
             }
         }
         
-        function hideLoadingModalImmediately() { // Specific for immediate hide
+        function hideLoadingModalImmediately() {
+            // console.log("hideLoadingModalImmediately called"); // DEBUG
             if (loadingModalInstance) {
-                loadingModalInstance.hide();
+                try {
+                    loadingModalInstance.hide();
+                } catch (e) {
+                    console.error("Error hiding modal immediately:", e);
+                }
             }
         }
-
 
         function handleLogin(event) {
             event.preventDefault();
@@ -505,7 +522,7 @@
             const formData = new FormData(document.getElementById('loginFormElement'));
             
             $.ajax({
-                url: "{% url 'login_page' %}",
+                url: "{% url 'login_page' %}", // Changed URL tag
                 type: "POST", data: formData, processData: false, contentType: false,
                 success: function(response) {
                     if (response.status === true) {
@@ -514,12 +531,12 @@
                             window.location.href = response.redirect_url || nextUrl;
                         }, 1500);
                     } else {
-                        hideLoadingModalImmediately(); // Hide immediately on error
+                        hideLoadingModalImmediately(); 
                         showAuthMessage(response.error, 'error');
                     }
                 },
                 error: function(xhr) {
-                    hideLoadingModalImmediately(); // Hide immediately on error
+                    hideLoadingModalImmediately(); 
                     console.error("Login AJAX Error:", xhr.status, xhr.statusText, xhr.responseText);
                     const errorMsg = xhr.responseJSON?.error || "Login failed. Please try again.";
                     showAuthMessage(errorMsg, 'error');
@@ -534,10 +551,10 @@
             const email = formData.get('email');
             
             $.ajax({
-                url: "{% url 'send_verification_code' %}",
+                url: "{% url 'send_verification_code' %}", // Changed URL tag
                 type: "POST", data: formData, processData: false, contentType: false,
                 success: function(response) {
-                    hideLoadingModal(); // General hide with slight delay for user to see message
+                    hideLoadingModal(); 
                     if (response.status === true) {
                         showAuthMessage(response.message, 'success');
                         verifiedEmailForSignup = email;
@@ -547,7 +564,7 @@
                     }
                 },
                 error: function(xhr) {
-                    hideLoadingModalImmediately(); // Hide immediately on error
+                    hideLoadingModalImmediately(); 
                     console.error("Email Verification AJAX Error:", xhr.status, xhr.statusText, xhr.responseText);
                     const errorMsg = xhr.responseJSON?.error || "Failed to send code. Please try again.";
                     showAuthMessage(errorMsg, 'error');
@@ -557,34 +574,53 @@
 
         function handleCodeVerification(event) {
             event.preventDefault();
+            console.log("handleCodeVerification: Initiated."); // DEBUG
             showLoadingModal("Verifying Code...", 'loading');
             const formData = new FormData(document.getElementById('codeVerificationFormElement'));
-            if (verifiedEmailForSignup && !formData.has('email')) formData.append('email', verifiedEmailForSignup);
+            
+            // Ensure the email that the code was sent to is included in the form data
+            // This helps the backend confirm which verification attempt this is for.
+            if (verifiedEmailForSignup) {
+                formData.set('email_for_verification', verifiedEmailForSignup); // Use a distinct key
+            } else {
+                // If verifiedEmailForSignup is somehow lost, try to get it from the display
+                // This is a fallback, ideally verifiedEmailForSignup should be robustly maintained
+                const displayedEmail = $('#displayVerifiedEmail').text();
+                if (displayedEmail && displayedEmail !== "your email") {
+                    formData.set('email_for_verification', displayedEmail);
+                }
+            }
+            console.log("handleCodeVerification: Sending AJAX request to {% url 'verify_email_code' %}. FormData email:", formData.get('email_for_verification')); // DEBUG
             
             $.ajax({
-                url: "{% url 'verify_email_code' %}",
+                url: "{% url 'verify_email_code' %}", // Changed URL tag
                 type: "POST", data: formData, processData: false, contentType: false,
                 success: function(response) {
-                    hideLoadingModalImmediately(); // Hide immediately after processing
+                    console.log("handleCodeVerification: AJAX Success. Raw Response:", response); // DEBUG
+                    hideLoadingModalImmediately(); // Hide modal FIRST
                     if (response && response.status === true) {
+                        console.log("handleCodeVerification: Verification success on client. Message:", response.message); // DEBUG
                         showAuthMessage(response.message, 'success');
-                        showSignupForm(verifiedEmailForSignup);
+                        showSignupForm(verifiedEmailForSignup); // Pass the email that was just verified
                     } else {
-                        const serverErrorMsg = response && response.error ? response.error : "Verification failed: Unexpected server response.";
+                        const serverErrorMsg = response && response.error ? response.error : "Verification failed: Unexpected or negative server response.";
+                        console.log("handleCodeVerification: Verification failed on server. Error:", serverErrorMsg); // DEBUG
                         showAuthMessage(serverErrorMsg, 'error');
                         showCodeVerificationForm(verifiedEmailForSignup); 
                     }
                 },
                 error: function(xhr, status, error) {
-                    hideLoadingModalImmediately(); // Hide immediately on error
-                    console.error("Code Verification AJAX Error. Status:", status, "Error:", error, "Response Text:", xhr.responseText);
-                    let errorMsg = "Code verification failed. Please try again.";
+                    console.error("handleCodeVerification: AJAX Error. Status:", status, "Error:", error, "Response Text:", xhr.responseText); // DEBUG
+                    hideLoadingModalImmediately(); // Hide modal FIRST on error
+                    let errorMsg = "Code verification request failed. Please check your connection and try again.";
                     if (xhr.responseJSON && xhr.responseJSON.error) {
                         errorMsg = xhr.responseJSON.error;
                     } else if (xhr.status === 403) {
-                        errorMsg = "Verification failed (Forbidden). Please ensure CSRF token is correct or refresh the page.";
+                        errorMsg = "Verification failed (403 Forbidden). This might be a CSRF issue. Please refresh the page and try again.";
                     } else if (xhr.responseText && xhr.responseText.toLowerCase().includes("csrf")) {
-                        errorMsg = "Verification failed (CSRF issue). Please refresh and try again.";
+                        errorMsg = "Verification failed (CSRF related). Please refresh and try again.";
+                    } else if (xhr.responseText) {
+                        // errorMsg = "An unexpected error occurred. Server response: " + xhr.responseText.substring(0, 150) + "...";
                     }
                     showAuthMessage(errorMsg, 'error');
                     showCodeVerificationForm(verifiedEmailForSignup); 
@@ -596,10 +632,10 @@
             event.preventDefault();
             showLoadingModal("Creating Account...", 'loading');
             const formData = new FormData(document.getElementById('signupFormElement'));
-            formData.set('email', $('#signupEmail').val());
+            formData.set('email', $('#signupEmail').val()); // Ensure it uses the stored verified email
 
             $.ajax({
-                url: "{% url 'signup_submit' %}",
+                url: "{% url 'signup_submit' %}", // Changed URL tag
                 type: "POST", data: formData, processData: false, contentType: false,
                 success: function(response) {
                     if (response.status === true) {
@@ -608,12 +644,12 @@
                             window.location.href = response.redirect_url || nextUrl;
                         }, 1500);
                     } else {
-                        hideLoadingModalImmediately(); // Hide immediately on error
+                        hideLoadingModalImmediately(); 
                         showAuthMessage(response.error, 'error');
                     }
                 },
                 error: function(xhr) {
-                    hideLoadingModalImmediately(); // Hide immediately on error
+                    hideLoadingModalImmediately(); 
                     console.error("Signup AJAX Error:", xhr.status, xhr.statusText, xhr.responseText);
                     const errorMsg = xhr.responseJSON?.error || "Signup failed. Please try again.";
                     showAuthMessage(errorMsg, 'error');
