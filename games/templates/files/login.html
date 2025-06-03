@@ -1,3 +1,4 @@
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -492,11 +493,19 @@
             }
         }
         
-        function hideLoadingModalImmediately() { // Specific for immediate hide
+        function hideLoadingModalImmediately() {
             if (loadingModalInstance) {
                 loadingModalInstance.hide();
+
+                // Manually remove the modal-backdrop (sometimes doesn't disappear on mobile)
+                $('.modal-backdrop').remove();
+
+                // Also force remove modal 'show' class and inline styles if needed
+                $('#loadingModal').removeClass('show').attr('aria-hidden', 'true').css('display', 'none');
+                $('body').removeClass('modal-open').css('overflow', 'auto');
             }
         }
+
 
 
         function handleLogin(event) {
