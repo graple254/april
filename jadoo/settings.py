@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "whitenoise.runserver_nostatic",
     'core',  # Custom app for core functionality
-    'games',  # Custom app for games
     'storages',  # For S3 storage
 ]
 
