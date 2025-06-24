@@ -69,3 +69,13 @@ class social_media(models.Model):
 
     def __str__(self):
         return f"Social Media: {self.twitter}, {self.tiktok}, {self.linkedin}"
+
+
+
+class Message(models.Model):
+    email = models.EmailField()
+    content = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Message from {self.email} at {self.timestamp}"

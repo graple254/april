@@ -329,6 +329,64 @@
         </div>
         <!-- footer end  -->
     </main>
+
+    <!-- Floating Contact Button and Form Widget (Bootstrap Only, No Custom CSS) -->
+<!-- Place this just before </body> -->
+
+<!-- Floating Button -->
+<button type="button"
+    class="btn btn-primary rounded-circle shadow-lg position-fixed"
+    style="bottom: 2rem; right: 2rem; z-index: 1055; width: 60px; height: 60px;"
+    data-bs-toggle="offcanvas"
+    data-bs-target="#contactWidget"
+    aria-controls="contactWidget"
+    aria-label="Contact Us">
+    <i class="bi bi-envelope-fill fs-3"></i>
+</button>
+
+<!-- Floating Offcanvas Form (Black & White Theme) -->
+<div class="offcanvas offcanvas-end bg-dark text-white"
+     tabindex="-1"
+     id="contactWidget"
+     aria-labelledby="contactWidgetLabel"
+     style="max-width: 350px;">
+
+  <!-- Header -->
+  <div class="offcanvas-header border-bottom border-light">
+    <h5 class="offcanvas-title d-flex align-items-center" id="contactWidgetLabel">
+      <i class="bi bi-envelope-paper-heart-fill me-2"></i> Contact Us
+    </h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+
+  <!-- Body -->
+  <div class="offcanvas-body">
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="contactEmail" class="form-label text-white">Your Email</label>
+            <input type="email" name="email" class="form-control bg-white text-dark" id="contactEmail" placeholder="you@example.com" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="contactMessage" class="form-label text-white">Message</label>
+            <textarea name="message" class="form-control bg-white text-dark" id="contactMessage" rows="4" placeholder="Type your message..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-light w-100 text-dark">
+            <i class="bi bi-send-fill me-1"></i> Send Message
+        </button>
+    </form>
+
+
+    <!-- Footer Note -->
+    <div class="text-center mt-3">
+      <small class="text-secondary">We'll get back to you soon!</small>
+    </div>
+  </div>
+</div>
+
+
     <!-- ========================= main end ========================= -->
 
     <!-- ========================= JS here ========================= -->

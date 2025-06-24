@@ -1,12 +1,20 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
 
+
 def index(request):
-    # Fetch the latest hero, platform details, and contact information
-    hero_info = hero.objects.last()  # Get the latest Hero object
-    platform_details = platform_detail.objects.all()  # Get all Platform details
-    contact_info = Contact.objects.first()  # Get the first Contact object (assuming you only have one)
-    social_media_info = social_media.objects.all()  # Get all Social Media objects
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        content = request.POST.get('message')
+        if email and content:
+            Message.objects.create(email=email, content=content)
+            return redirect('index')  # prevents form resubmission on refresh
+
+    # Fetch content
+    hero_info = hero.objects.last()
+    platform_details = platform_detail.objects.all()
+    contact_info = Contact.objects.first()
+    social_media_info = social_media.objects.all()
 
     context = {
         'hero_info': hero_info,
@@ -14,5 +22,5 @@ def index(request):
         'contact_info': contact_info,
         'social_media_info': social_media_info,
     }
-    
+
     return render(request, 'index.html', context)

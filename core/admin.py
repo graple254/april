@@ -61,3 +61,11 @@ class DetailAdmin(admin.ModelAdmin):
 class SocialMediaAdmin(admin.ModelAdmin):
     list_display = ('twitter', 'facebook', 'instagram', 'youtube', 'tiktok', 'linkedin')
     search_fields = ('twitter', 'facebook', 'instagram', 'youtube', 'tiktok', 'linkedin')
+
+
+@admin.register(Message)
+class MessageAdmin(admin.ModelAdmin):
+    list_display = ('email', 'content', 'timestamp')
+    search_fields = ('email', 'content')
+    list_filter = ('timestamp',)
+    ordering = ('-timestamp',)
