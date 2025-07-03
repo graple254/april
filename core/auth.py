@@ -17,7 +17,7 @@ def send_verification_email(email, code):
     api_key = (
         "xkeysib"
         "-65f87098e4405520b41fc9ac188abfbabd646ea947a9045a9ccde4c94795bdc8"
-        "-0JgYB4IA3BVOIg4G"
+        "-5NIDZuBUzrO0j1XU"
     )
 
     configuration = sib_api_v3_sdk.Configuration()
@@ -90,5 +90,3 @@ def authenticate_user_func(request, username, password):
     else:
         return {"status": False, "error": "Invalid credentials"}
 
-
-#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
