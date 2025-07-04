@@ -4,21 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jadoo | Login</title>
-    <meta name="description" content="Jadoo helps students study smarter by turning their notes and past papers into flashcards and predicted exam questions. Log in to access your account.">
+    <title>Jadoo | Sign Up</title>
+    <meta name="description" content="Jadoo helps students study smarter by turning their notes and past papers into flashcards and predicted exam questions. Sign up to get started.">
     <meta name="author" content="Jadoo Team">
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/Jadoo_Fav.png' %}">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Jadoo Study — Log In">
-    <meta property="og:description" content="Log in to Jadoo to access AI-powered flashcards and exam prep tools.">
+    <meta property="og:title" content="Jadoo Study — Sign Up">
+    <meta property="og:description" content="Sign up for Jadoo to access AI-powered flashcards and exam prep tools.">
     <meta property="og:image" content="{% static 'assets/img/Jadoo.png' %}">
-    <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}/login/">
+    <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}/signup/">
     <meta property="og:site_name" content="Jadoo Study">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Jadoo Study — Log In">
-    <meta name="twitter:description" content="Log in to Jadoo to start studying smarter with AI-powered tools.">
+    <meta name="twitter:title" content="Jadoo Study — Sign Up">
+    <meta name="twitter:description" content="Sign up for Jadoo to start studying smarter with AI-powered tools.">
     <meta name="twitter:image" content="{% static 'assets/img/Jadoo.png' %}">
-    <meta name="keywords" content="jadoo study, ai study tool, login, flashcards generator, ai exam prep">
+    <meta name="keywords" content="jadoo study, ai study tool, signup, flashcards generator, ai exam prep">
     <meta name="robots" content="index, follow">
     <meta name="language" content="en">
     <meta name="application-name" content="Jadoo Study">
@@ -104,25 +104,33 @@
 <body>
     <div class="card auth-card">
         <div class="card-header">
-            <h3 class="mb-0">Jadoo Login</h3>
-            <p class="mb-0">Access Your Study Tools</p>
+            <h3 class="mb-0">Jadoo Sign Up</h3>
+            <p class="mb-0">Create Your Study Account</p>
         </div>
         <div class="card-body">
             <div id="authMessages" class="mb-3"></div>
-            <form id="loginForm" onsubmit="handleLogin(event)">
+            <form id="signupForm" onsubmit="handleSignup(event)">
                 {% csrf_token %}
                 <div class="mb-3">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="example@domain.com" required>
+                </div>
+                <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Choose a username" required>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
                 </div>
-                <button type="submit" class="btn btn-primary w-100 rounded-pill">Log In</button>
+                <div class="mb-3">
+                    <label for="confirm_password" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 rounded-pill">Sign Up</button>
             </form>
             <div class="text-center mt-3">
-                <p>Don't have an account? <a href="{% url 'signup' %}" class="btn btn-link">Sign Up</a></p>
+                <p>Already have an account? <a href="{% url 'login' %}" class="btn btn-link">Log In</a></p>
             </div>
         </div>
     </div>
@@ -209,12 +217,12 @@
                 }
             });
         });
-        function handleLogin(event) {
+        function handleSignup(event) {
             event.preventDefault();
             const loadingModal = showLoadingModal();
-            const formData = new FormData(document.getElementById('loginForm'));
+            const formData = new FormData(document.getElementById('signupForm'));
             $.ajax({
-                url: '{% url "login" %}',
+                url: '{% url "signup" %}',
                 type: 'POST',
                 data: formData,
                 processData: false,
@@ -225,7 +233,7 @@
                             const redirectModal = showRedirectModal();
                             setTimeout(() => {
                                 hideModal(redirectModal, () => {
-                                    window.location.href = '{% url "home" %}';
+                                    window.location.href = response.redirect || '{% url "verify" %}';
                                 });
                             }, 1000); // Show redirect modal for 1 second
                         } else {

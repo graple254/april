@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadoo | Verify Your Email</title>
+    <meta name="description" content="Jadoo helps students study smarter by turning their notes and past papers into flashcards and predicted exam questions.">
+    <meta name="author" content="Jadoo Team">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/Jadoo_Fav.png' %}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Jadoo Study — Verify Your Email">
+    <meta property="og:description" content="Check your email to verify your Jadoo account and start studying smarter.">
+    <meta property="og:image" content="{% static 'assets/img/Jadoo.png' %}">
+    <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}/verify/">
+    <meta property="og:site_name" content="Jadoo Study">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Jadoo Study — Verify Your Email">
+    <meta name="twitter:description" content="Check your email to verify your Jadoo account and start studying smarter.">
+    <meta name="twitter:image" content="{% static 'assets/img/Jadoo.png' %}">
+    <meta name="keywords" content="jadoo study, ai study tool, email verification, student ai assistant">
+    <meta name="robots" content="noindex, follow">
+    <meta name="language" content="en">
+    <meta name="application-name" content="Jadoo Study">
+    <meta name="theme-color" content="#ffffff">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .auth-card {
+            max-width: 450px;
+            width: 100%;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        .auth-card .card-header {
+            background-color: #000000;
+            color: #ffffff;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            text-align: center;
+            padding: 20px;
+        }
+        .auth-card .card-body {
+            padding: 30px;
+        }
+        .btn-link {
+            color: #000000;
+        }
+        .btn-link:hover {
+            color: #333333;
+        }
+        .alert {
+            margin-bottom: 20px;
+            border-radius: 8px;
+            padding: 15px;
+            font-size: 16px;
+        }
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+        .text-primary {
+            color: #000000 !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="card auth-card">
+        <div class="card-header">
+            <h3 class="mb-0">Jadoo Email Verification</h3>
+            <p class="mb-0">Check Your Email</p>
+        </div>
+        <div class="card-body">
+            {% if error %}
+                <div class="alert alert-danger" role="alert">{{ error }}</div>
+            {% else %}
+                <div class="text-center mb-4">
+                    <h5>Verify Your Email</h5>
+                    <p>We’ve sent a verification link to <strong class="text-primary">{{ email }}</strong>.</p>
+                    <p>Please check your email (including spam/junk) and click the link to activate your account.</p>
+                </div>
+            {% endif %}
+            <div class="text-center">
+                <a href="{% url 'signup' %}" class="btn btn-link">Back to Signup</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

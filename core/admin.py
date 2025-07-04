@@ -1,18 +1,14 @@
 from django.contrib import admin
 from .models import *
 
-@admin.register(Profile)
-class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('image',)
-    search_fields = ('image',)
-    readonly_fields = ('image',)
+@admin.register(EmailVerificationToken)
+class EmailVerificationTokenAdmin(admin.ModelAdmin):
+    list_display = ('user', 'token', 'created_at', 'expires_at', 'is_used')
+    search_fields = ('user__email', 'token')
+    list_filter = ('is_used', 'created_at', 'expires_at')
+    readonly_fields = ('created_at', 'expires_at')
 
-    def has_add_permission(self, request):
-        return not Profile.objects.exists()
 
-    def has_delete_permission(self, request, obj=None):
-        return False
-    
     
 @admin.register(Visitor)
 class VisitorAdmin(admin.ModelAdmin):
